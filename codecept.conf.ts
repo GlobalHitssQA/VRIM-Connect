@@ -1,22 +1,41 @@
 require('ts-node/register')
 // Esto se debe de descomentar si se va a usar el la propiedad de emulate en la configuracion
 // const { devices } = require('playwright')
-
+export const vertical = {
+	height: 1334,
+	width: 1000,
+}
+export const horizontal = {
+	height: 1000,
+	width: 1334,
+}
+export const tabletDescriptor = {
+	viewport: horizontal,
+	userAgent:
+		'Mozilla/5.0 (Linux; Android 10; SM-P610) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.136 Safari/537.36',
+	deviceScaleFactor: 1,
+	isMobile: true,
+	hasTouch: true,
+	defaultBrowserType: 'chromium',
+}
 exports.config = {
 	output: './output',
 	helpers: {
 		Playwright: {
-			url: 'http://zero.webappsecurity.com/login.html',
+			url: 'https://qa-miembros.vrim.com.mx/auth/login',
 			// Ejemplo de emular un dispositvo pero por defecto en todas las pruebas si quiere solo probarse solo en una prueba vease el test de emulacionDeDispositivos
-			// emulate: devices['iPhone 6'],
-			show: false,
+			// emulate: tabletDescriptor,
+			windowSize: '1444x693',
+			device: 'Desktop',
+			show: true,
 			browser: 'chromium',
 			waitForNavigation: 'domcontentloaded',
-			video: true,
+			video: false,
 			keepVideoForPassedTests: true,
 			pressKeyDelay: 100,
 			trace: true,
-			keepTraceForPassedTests: true,
+			keepTraceForPassedTests: false,
+			locale: 'es-MX',
 		},
 		PlaywrightVideoAllure: {
 			require: './utils/playwrightVideoAllure_helper',
@@ -52,7 +71,7 @@ exports.config = {
 	hooks: [],
 	gherkin: {
 		features: './features/*.feature',
-		steps: ['./step_definitions/RegistroSteps'],
+		steps: ['./step_definitions/ExplorarSteps'],
 	},
 	plugins: {
 		subtitles: {
