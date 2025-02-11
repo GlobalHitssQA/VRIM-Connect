@@ -1,6 +1,6 @@
 const { I } = inject()
 
-class MonitoreoPage {
+class LoMasRecientePage {
 	fields: {
 		header: {
 			logoVrim: string
@@ -20,7 +20,9 @@ class MonitoreoPage {
 			cerrarSesionButton: string
 		}
 		mainContent: {
-			seleccionaAlBeneficiario: string
+			loMasVistoVideoUno: string
+			loMasVistoVideoDos: string
+			loMasVistoVideoTres: string
 		}
 	}
 
@@ -53,15 +55,12 @@ class MonitoreoPage {
 					'(//a[text()[normalize-space()="Sesión y cuenta"]])[1]',
 			},
 			mainContent: {
-				seleccionaAlBeneficiario:
-					'//div[contains(@class, "user-item") and contains(@class, "user-selected")]',
+				loMasVistoVideoUno: '(//a//span[@class="blog-title"])[12]',
+				loMasVistoVideoDos: '(//a//span[@class="blog-title"])[13]',
+				loMasVistoVideoTres: '(//a//span[@class="blog-title"])[14]',
 			},
 		}
 	}
-
-	openCitasPages() {
-		I.waitForVisible(this.fields.header.logoVrim)
-	}
 }
 
-export = new MonitoreoPage()
+export = new LoMasRecientePage()

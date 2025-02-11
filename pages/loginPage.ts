@@ -38,7 +38,7 @@ class LoginPage {
 		}
 	}
 
-	loginStep() {
+	async loginStep() {
 		I.amOnPage('/')
 		I.waitForElement(this.fields.header.logoVrim, 10)
 		I.click(this.fields.mainContent.iniciarSesionButton)

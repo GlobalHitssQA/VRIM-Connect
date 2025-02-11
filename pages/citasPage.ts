@@ -1,6 +1,6 @@
 const { I } = inject()
 
-class ExplorarPage {
+class CitasPage {
 	fields: {
 		header: {
 			logoVrim: string
@@ -21,14 +21,11 @@ class ExplorarPage {
 		}
 		mainContent: {
 			nombreDelUusuario: string
-			fechaDeNacimiento: string
-			sexoDeNacimiento: string
-			curp: string
-			rfc: string
-			miPlanButton: string
-			beneficiariosButton: string
-			beneficiariosRegistradosInput: string
-			beneficiariosDisponiblesInput: string
+			correo: string
+			seleccionaLaCita: string
+			seleccionaUnMes: string
+			uploadPhoto: string
+			seleccionarPerfil: string
 		}
 
 		suscriptionModal: { beneficiosMessage: string; descartarButton: string }
@@ -40,8 +37,7 @@ class ExplorarPage {
 				logoVrim: '//img[@alt="logo vrim"]',
 				avatarPorfileButton:
 					'(//img[contains(@class, "1img_rounded") and contains(@src, "no-avatar.png")])[3]',
-				buscarInput:
-					'//input[@placeholder="Buscar" and @id="mat-input-2"]',
+				buscarInput: '(//input[@placeholder="Buscar"])[3]',
 			},
 			sidebar: {
 				explorarPageButton:
@@ -64,18 +60,12 @@ class ExplorarPage {
 					'(//a[text()[normalize-space()="Sesión y cuenta"]])[1]',
 			},
 			mainContent: {
-				nombreDelUusuario: '//p[@class="fs-6 fw-normal"]',
-				fechaDeNacimiento: '//input[@id="mat-input-9"]',
-				sexoDeNacimiento: '//input[@id="mat-input-10"]',
-				curp: '//input[@id="mat-input-11"]',
-				rfc: '//input[@id="mat-input-12"]',
-				miPlanButton: '//button[@class="btn1 btn5 fw-normal"]',
-				beneficiariosButton:
-					'//button[contains(text(), "Beneficiarios")]',
-				beneficiariosRegistradosInput:
-					'//input[@placeholder="Beneficiarios registrados"]',
-				beneficiariosDisponiblesInput:
-					'//input[@placeholder="Beneficiarios disponibles"]',
+				nombreDelUusuario: '//h3[@class="mb-0 text-name"]',
+				correo: '//span[@class="text-muted fs-14"]',
+				seleccionaLaCita: '//div[@id="mat-select-value-11"]',
+				seleccionaUnMes: '//input[@id="mat-input-61"]',
+				uploadPhoto: '//label[@class="badge-editar rounded-pill"]',
+				seleccionarPerfil: '//a[@class="nav-link text-center"]',
 			},
 
 			suscriptionModal: {
@@ -88,8 +78,7 @@ class ExplorarPage {
 
 	openCitasPages() {
 		I.waitForVisible(this.fields.header.logoVrim)
-		I.wait(1000)
 	}
 }
 
-export = new ExplorarPage()
+export = new CitasPage()

@@ -29,12 +29,28 @@ class ExplorarPage {
 			encuentraEspecialistaButton: string
 			agendaConsultaButton: string
 			referenciasMedicasVerMasButton: string
+			redDeEstabComercialesButton: string
 		}
 		floatingChat: {
 			chatButton: string
 		}
-		wallnessSection: {
-			wallnessVerMasButton: string
+		wellnessSection: {
+			wellnessVerMasButton: string
+			wellnessVideoUno: string
+			wellnessVideoDos: string
+			wellnessVideoTres: string
+		}
+		blogSection: {
+			blogVerMasButton: string
+			blogVideoUno: string
+			blogVideoDos: string
+			blogVideoTres: string
+		}
+		loMasRecienteSection: {
+			loMasRecienteVerMasButton: string
+			loMasRecienteVideoUno: string
+			loMasRecienteVideoDos: string
+			loMasRecienteVideoTres: string
 		}
 		suscriptionModal: { beneficiosMessage: string; descartarButton: string }
 		expectedEndPoints: {
@@ -49,8 +65,7 @@ class ExplorarPage {
 				logoVrim: '//img[@alt="logo vrim"]',
 				avatarPorfileButton:
 					'(//img[contains(@class, "1img_rounded") and contains(@src, "no-avatar.png")])[3]',
-				buscarInput:
-					'//input[@placeholder="Buscar" and @id="mat-input-2"]',
+				buscarInput: '(//input[@placeholder="Buscar"])[3]',
 			},
 			sidebar: {
 				explorarPageButton:
@@ -87,13 +102,31 @@ class ExplorarPage {
 
 				referenciasMedicasVerMasButton:
 					'//div[h6[text()[normalize-space()="Referencias médicas"]]]//div[text()[normalize-space()="Ver más"]]',
+				redDeEstabComercialesButton:
+					'//span[text()="Red de establecimientos comerciales"]',
 			},
 			floatingChat: {
 				chatButton: '//button[@aria-label="Abrir Messenger"]',
 			},
-			wallnessSection: {
-				wallnessVerMasButton:
+			wellnessSection: {
+				wellnessVerMasButton:
 					'//div[@routerlink="busqueda-blog/wellness"]',
+				wellnessVideoUno: '(//a//span[@class="blog-title"])[1]',
+				wellnessVideoDos: '(//a//span[@class="blog-title"])[2]',
+				wellnessVideoTres: '(//a//span[@class="blog-title"])[3]',
+			},
+			blogSection: {
+				blogVerMasButton: '//div[@routerlink="busqueda-blog/blog"]',
+				blogVideoUno: '(//a//span[@class="blog-title"])[4]',
+				blogVideoDos: '(//a//span[@class="blog-title"])[5]',
+				blogVideoTres: '(//a//span[@class="blog-title"])[6]',
+			},
+			loMasRecienteSection: {
+				loMasRecienteVerMasButton:
+					'//div[@routerlink="busqueda-blog/reciente"]',
+				loMasRecienteVideoUno: '(//a//span[@class="blog-title"])[7]',
+				loMasRecienteVideoDos: '(//a//span[@class="blog-title"])[8]',
+				loMasRecienteVideoTres: '(//a//span[@class="blog-title"])[9]',
 			},
 			suscriptionModal: {
 				beneficiosMessage:
@@ -112,10 +145,9 @@ class ExplorarPage {
 		await I.usePlaywrightTo('Interceptar solicitudes', async ({ page }) => {
 			await page.route('**/api/BuscadorVrimPalabra', async (route) => {
 				const requestUrl = route.request().url()
-				console.log(
+				I.say(
 					'✅ endpoint /BuscadorVrimPalabra detectado correctamente.'
 				)
-				console.log(requestUrl)
 				I.seeTextEquals('**/Wapy_Pymes/api/ListaPalabra', requestUrl)
 				route.continue()
 			})
@@ -123,9 +155,7 @@ class ExplorarPage {
 			await page.route(
 				'**/Wapy_Pymes/api/ListaPalabra',
 				async (route) => {
-					console.log(
-						'✅ endpoint ListaPalabra detectada correctamente.'
-					)
+					I.say('✅ endpoint ListaPalabra detectada correctamente.')
 					route.continue()
 				}
 			)
@@ -133,9 +163,9 @@ class ExplorarPage {
 	}
 
 	navigateToHomeSection() {
+		I.wait(5000)
 		I.waitForVisible(this.fields.floatingChat.chatButton, 20)
 		I.click(this.fields.mainContent.homeCareButton)
-		I.wait(10000)
 	}
 }
 

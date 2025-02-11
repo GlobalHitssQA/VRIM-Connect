@@ -1,6 +1,6 @@
 const { I } = inject()
 
-class ExplorarPage {
+class PlanesPage {
 	fields: {
 		header: {
 			logoVrim: string
@@ -27,8 +27,7 @@ class ExplorarPage {
 				logoVrim: '//img[@alt="logo vrim"]',
 				avatarPorfileButton:
 					'(//img[contains(@class, "1img_rounded") and contains(@src, "no-avatar.png")])[3]',
-				buscarInput:
-					'//input[@placeholder="Buscar" and @id="mat-input-2"]',
+				buscarInput: '(//input[@placeholder="Buscar"])[3]',
 			},
 			sidebar: {
 				explorarPageButton:
@@ -55,8 +54,7 @@ class ExplorarPage {
 
 	openPlanesPage() {
 		I.waitForVisible(this.fields.header.logoVrim)
-		I.wait(1000)
 	}
 }
 
-export = new ExplorarPage()
+export = new PlanesPage()

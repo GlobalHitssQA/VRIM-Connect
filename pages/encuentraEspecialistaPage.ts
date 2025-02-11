@@ -1,6 +1,6 @@
 const { I } = inject()
 
-class MonitoreoPage {
+class EncuentraEspecialistaPage {
 	fields: {
 		header: {
 			logoVrim: string
@@ -21,6 +21,18 @@ class MonitoreoPage {
 		}
 		mainContent: {
 			seleccionaAlBeneficiario: string
+			filtrosAvanzadosButton: string
+			medicinaGeneralOption: string
+			nutricionOption: string
+			pediatriaOption: string
+			ginecologiaOption: string
+			dermatologiaOption: string
+			alergiaOption: string
+			angiologiaOption: string
+			audiologiaOption: string
+			cardiologiaOption: string
+			cirugiaGeneralOption: string
+			cloroproctologiaOption: string
 		}
 	}
 
@@ -55,13 +67,23 @@ class MonitoreoPage {
 			mainContent: {
 				seleccionaAlBeneficiario:
 					'//div[contains(@class, "user-item") and contains(@class, "user-selected")]',
+				filtrosAvanzadosButton: '//span[text()="Filtros avanzados"]',
+				medicinaGeneralOption: '//span[text()="Medicina general"]',
+				nutricionOption: '//span[text()="Nutrición"]',
+				pediatriaOption: '//span[text()="Pediatría"]',
+				ginecologiaOption: '//span[text()="Ginecología y obstetricia"]',
+				dermatologiaOption: '//span[text()="Dermatología"]',
+				alergiaOption: '//span[text()="Alergia e inmunología clínica"]',
+				angiologiaOption:
+					'//span[text()="Angiología y Cirugía vascular"]',
+				audiologiaOption:
+					'//span[text()="Audiología, otoneurología y foniatría "]',
+				cardiologiaOption: '//span[text()="Cardiología"]',
+				cirugiaGeneralOption: '//span[text()="Cirugía general"]',
+				cloroproctologiaOption: '//span[text()="Coloproctología"]',
 			},
 		}
 	}
-
-	openCitasPages() {
-		I.waitForVisible(this.fields.header.logoVrim)
-	}
 }
 
-export = new MonitoreoPage()
+export = new EncuentraEspecialistaPage()
