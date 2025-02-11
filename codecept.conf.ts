@@ -27,7 +27,7 @@ exports.config = {
 			// emulate: tabletDescriptor,
 			windowSize: '1444x693',
 			device: 'Desktop',
-			show: true,
+			show: false,
 			browser: 'chromium',
 			waitForNavigation: 'domcontentloaded',
 			video: false,
