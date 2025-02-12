@@ -27,7 +27,7 @@ exports.config = {
 			// emulate: tabletDescriptor,
 			windowSize: '1444x693',
 			device: 'Desktop',
-			show: true,
+			show: false,
 			browser: 'chromium',
 			waitForNavigation: 'domcontentloaded',
 			video: true,
@@ -71,7 +71,7 @@ exports.config = {
 	hooks: [],
 	gherkin: {
 		features: './features/*.feature',
-		steps: ['./step_definitions/ExplorarSteps'],
+		steps: ['./step_definitions/EndpointValidationSteps'],
 	},
 	plugins: {
 		subtitles: {

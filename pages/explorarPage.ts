@@ -1,3 +1,5 @@
+import assert from 'assert'
+
 const { I } = inject()
 
 class ExplorarPage {
@@ -140,32 +142,39 @@ class ExplorarPage {
 		}
 	}
 
-	async setUpApiInterception() {
-		I.waitForVisible(this.fields.header.logoVrim, 10)
-		await I.usePlaywrightTo('Interceptar solicitudes', async ({ page }) => {
-			await page.route('**/api/BuscadorVrimPalabra', async (route) => {
-				const requestUrl = route.request().url()
-				I.say(
-					'✅ endpoint /BuscadorVrimPalabra detectado correctamente.'
-				)
-				I.seeTextEquals('**/Wapy_Pymes/api/ListaPalabra', requestUrl)
-				route.continue()
-			})
-
-			await page.route(
-				'**/Wapy_Pymes/api/ListaPalabra',
-				async (route) => {
-					I.say('✅ endpoint ListaPalabra detectada correctamente.')
-					route.continue()
-				}
-			)
-		})
+	setUpApiInterception(domain, endpoint) {
+		this.validateNavigation(domain, endpoint)
 	}
 
 	navigateToHomeSection() {
-		I.wait(5000)
+		I.waitForVisible(this.fields.header.logoVrim, 10)
 		I.waitForVisible(this.fields.floatingChat.chatButton, 20)
 		I.click(this.fields.mainContent.homeCareButton)
+	}
+
+	navigateToRedDeEstablecimientosComerciales() {
+		I.waitForVisible(this.fields.header.logoVrim, 10)
+		I.waitForVisible(this.fields.floatingChat.chatButton, 20)
+		I.click(this.fields.mainContent.redDeEstabComercialesButton)
+	}
+
+	navigateToExplorarPage() {
+		I.waitForVisible(this.fields.header.logoVrim, 10)
+		I.click(this.fields.sidebar.explorarPageButton)
+	}
+
+	selectProvidersCard() {
+		I.waitForVisible(this.fields.header.logoVrim, 10)
+	}
+
+	// eslint-disable-next-line class-methods-use-this
+	validateNavigation(domain: string, endpoint: string) {
+		I.waitForResponse(
+			(response) =>
+				response.url() === `${domain}${endpoint}` &&
+				response.status() === 200,
+			10
+		)
 	}
 }
 
