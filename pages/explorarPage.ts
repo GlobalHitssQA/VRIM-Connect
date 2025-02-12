@@ -1,6 +1,10 @@
-import assert from 'assert'
-
 const { I } = inject()
+const expectedStatusCodes: Record<string, number> = {
+	'/login': 200,
+	'/post': 200,
+	'/create': 201,
+	'/delete': 204,
+}
 
 class ExplorarPage {
 	fields: {
@@ -179,7 +183,7 @@ class ExplorarPage {
 		I.waitForResponse(
 			(response) =>
 				response.url() === `${domain}${endpoint}` &&
-				response.status() === 200,
+				response.status() === (expectedStatusCodes[endpoint] || 200),
 			10
 		)
 	}

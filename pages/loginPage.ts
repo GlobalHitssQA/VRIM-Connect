@@ -1,5 +1,10 @@
 const { I } = inject()
 
+const userCredentials: Record<string, { username: string; password: string }> =
+	{
+		basic: { username: '8333006407', password: 'Prueba123.' },
+		vrimConnect: { username: '5524326782', password: 'Prueba$2025' },
+	}
 class LoginPage {
 	fields: {
 		header: {
@@ -28,12 +33,13 @@ class LoginPage {
 		}
 	}
 
-	async loginStep(userName, password) {
+	async loginStep(userType: string) {
+		const credentials = userCredentials[userType]
 		I.amOnPage('/')
 		I.waitForElement(this.fields.header.logoVrim, 10)
 		I.click(this.fields.mainContent.iniciarSesionButton)
-		I.fillField(this.fields.mainContent.userNameInput, userName)
-		I.fillField(this.fields.mainContent.passwordInput, password)
+		I.fillField(this.fields.mainContent.userNameInput, credentials.username)
+		I.fillField(this.fields.mainContent.passwordInput, credentials.password)
 		I.click(this.fields.mainContent.entrarButton)
 	}
 }

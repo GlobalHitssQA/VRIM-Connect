@@ -3,12 +3,9 @@ import loginPage from '../pages/loginPage'
 
 const { I } = inject()
 
-Given(
-	/^I am logged in VRIM page with user "([^"]*)" and password "([^"]*)"$/,
-	(userName, password) => {
-		loginPage.loginStep(userName, password)
-	}
-)
+Given(/^I am logged in VRIM page with user "([^"]*)"$/, (userType) => {
+	loginPage.loginStep(userType)
+})
 
 Then(/^I navigate to Home Care Section$/, () => {
 	explorarPage.navigateToHomeSection()

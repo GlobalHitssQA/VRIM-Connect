@@ -1,6 +1,5 @@
 require('ts-node/register')
-// Esto se debe de descomentar si se va a usar el la propiedad de emulate en la configuracion
-// const { devices } = require('playwright')
+
 export const vertical = {
 	height: 1334,
 	width: 1000,
