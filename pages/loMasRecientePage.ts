@@ -57,9 +57,12 @@ class LoMasRecientePage {
 					'//div[@class="sidebar card bg-transparent border-0 shadow-none mb-0 rounded-0"]//a[text()[normalize-space()="Sesión y cuenta"]]',
 			},
 			mainContent: {
-				loMasVistoVideoUno: '(//a//span[@class="blog-title"])[12]',
-				loMasVistoVideoDos: '(//a//span[@class="blog-title"])[13]',
-				loMasVistoVideoTres: '(//a//span[@class="blog-title"])[14]',
+				loMasVistoVideoUno:
+					'//ul[@class="profile-card-group"]//app-card-blog[1]//span[@class="blog-title"]',
+				loMasVistoVideoDos:
+					'//ul[@class="profile-card-group"]//app-card-blog[2]//span[@class="blog-title"]',
+				loMasVistoVideoTres:
+					'//ul[@class="profile-card-group"]//app-card-blog[3]//span[@class="blog-title"]',
 			},
 		}
 	}

@@ -1,3 +1,5 @@
+import { inject } from '@codeceptjs/configure'
+
 const { I } = inject()
 
 class CitasPage {

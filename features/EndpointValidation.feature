@@ -50,6 +50,6 @@ Examples:
     Then I validate the correct domain in "<case>" with "<domain>" and "<endpoint>"
     Examples: 
   | userName    | password     | case            | domain                            | endpoint                                        |
-| 5524326782  | Prueba$2025   | Mapa            | https://medicavrim-si.inbursa.com | /Api/VrimConnect/Mapa                           |
-| 8333006407  | Prueba123.   | Mapa            | https://medicavrim-si.inbursa.com | /Api/VrimConnect/Mapa                           |
+  | 5524326782  | Prueba$2025  | Mapa            | https://medicavrim-si.inbursa.com | /Api/VrimConnect/Mapa                           |
+  | 8333006407  | Prueba123.   | Mapa            | https://medicavrim-si.inbursa.com | /Api/VrimConnect/Mapa                           |
 
