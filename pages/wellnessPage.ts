@@ -63,14 +63,14 @@ class WellnessPage {
 					'//div[@class="sidebar card bg-transparent border-0 shadow-none mb-0 rounded-0"]//a[text()[normalize-space()="Sesión y cuenta"]]',
 			},
 			mainContent: {
-				wellnessVideoUno: '(//a//span[@class="blog-title"])[12]',
-				wellnessVideoDos: '(//a//span[@class="blog-title"])[12]',
-				wellnessVideoTres: '(//a//span[@class="blog-title"])[12]',
+				wellnessVideoUno: '(//a//span[@class="blog-title"])[1]',
+				wellnessVideoDos: '(//a//span[@class="blog-title"])[2]',
+				wellnessVideoTres: '(//a//span[@class="blog-title"])[3]',
 			},
 			loMasVisto: {
-				loMasVistoVideoUno: '(//a//span[@class="blog-title"])[12]',
-				loMasVistoVideoDos: '(//a//span[@class="blog-title"])[13]',
-				loMasVistoVideoTres: '(//a//span[@class="blog-title"])[14]',
+				loMasVistoVideoUno: '(//a//span[@class="blog-title"])[7]',
+				loMasVistoVideoDos: '(//a//span[@class="blog-title"])[8]',
+				loMasVistoVideoTres: '(//a//span[@class="blog-title"])[9]',
 				verMasButton: '//div[text()="Ver más"]',
 			},
 		}
