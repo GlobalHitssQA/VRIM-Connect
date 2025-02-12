@@ -3,7 +3,7 @@ const { I } = inject()
 const userCredentials: Record<string, { username: string; password: string }> =
 	{
 		basic: { username: '8333006407', password: 'Prueba123.' },
-		vrimConnect: { username: '552433326782', password: 'Prueba$2025' },
+		vrimConnect: { username: '5524326782', password: 'Prueba$2025' },
 	}
 class LoginPage {
 	fields: {
