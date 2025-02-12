@@ -1,12 +1,9 @@
 import { config } from '../utils/config'
 
 const { I } = inject()
-const expectedStatusCodes: Record<string, number> = {
-	'/login': 200,
-	'/post': 200,
-	'/create': 201,
-	'/delete': 204,
-}
+
+const { expectedStatusCodes } = config
+
 const endpoints = {
 	'Buscador Vrim': '/Api/VrimConnect/Buscador',
 	'Wapy Lista Palabra': '/Wapy_Pymes/api/ListaPalabra',
