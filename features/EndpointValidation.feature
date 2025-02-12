@@ -7,8 +7,8 @@ Feature: EndpointValidation
     Then I validate the correct domain in "<case>" call
     Examples: 
   | userType    | case                 |
-  | vrimConnect | Buscador Vrim        |
-  | vrimConnect | Wapy Lista Palabra   |
+  | vrimConnect | buscadorVrim         |
+  | vrimConnect | wapyListaPalabra     |
 
         
         
@@ -34,7 +34,7 @@ Examples:
 Examples:
   | userType    | case                |
   | vrimConnect | Especialidades      |
-  | vrimConnect | Vrim Lista Palabra  | 
+  | vrimConnect | vrimListaPalabra    | 
   | vrimConnect | Combos              |
 
 

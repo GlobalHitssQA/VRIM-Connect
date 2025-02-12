@@ -18,7 +18,7 @@ class CitasPage {
 			cerrarSesionButton: string
 		}
 		mainContent: {
-			nombreDelUusuario: string
+			nombreDelUsuario: string
 			correo: string
 			seleccionaLaCita: string
 			seleccionaUnMes: string
@@ -60,7 +60,7 @@ class CitasPage {
 					'//div[@class="sidebar card bg-transparent border-0 shadow-none mb-0 rounded-0"]//a[text()[normalize-space()="Sesión y cuenta"]]',
 			},
 			mainContent: {
-				nombreDelUusuario: '//h3[@class="mb-0 text-name"]',
+				nombreDelUsuario: '//h3[@class="mb-0 text-name"]',
 				correo: '//span[@class="text-muted fs-14"]',
 				seleccionaLaCita: '//div[@id="mat-select-value-11"]',
 				seleccionaUnMes: '//input[@id="mat-input-61"]',

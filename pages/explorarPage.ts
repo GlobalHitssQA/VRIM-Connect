@@ -5,12 +5,12 @@ const { I } = inject()
 const { expectedStatusCodes } = config
 
 const endpoints = {
-	'Buscador Vrim': '/Api/VrimConnect/Buscador',
-	'Wapy Lista Palabra': '/Wapy_Pymes/api/ListaPalabra',
+	buscadorVrim: '/Api/VrimConnect/Buscador',
+	wapyListaPalabra: '/Wapy_Pymes/api/ListaPalabra',
 	Cupones: '/APIMovilesSI/Api/Cupones',
 	Especialidades: '/APIMovilesSI/Api/VrimConnect/Especialidades',
-	'Vrim Lista Palabra': '/APIMovilesSI/Api/VrimConnect/ListaPalabra',
-	Combos: '/APIMovilesSI/Api/Combos ',
+	vrimListaPalabra: '/APIMovilesSI/Api/VrimConnect/ListaPalabra',
+	Combos: '/APIMovilesSI/Api/Combos',
 	Mapa: '/Api/VrimConnect/Mapa',
 }
 
@@ -67,10 +67,6 @@ class ExplorarPage {
 			loMasRecienteVideoTres: string
 		}
 		suscriptionModal: { beneficiosMessage: string; descartarButton: string }
-		expectedEndPoints: {
-			buscadorEndpoint: string
-			listaPalabraEndPoint: string
-		}
 	}
 
 	constructor() {
@@ -148,10 +144,6 @@ class ExplorarPage {
 				beneficiosMessage:
 					'//span[text()="Consigue mejores beneficios al suscribirte"]',
 				descartarButton: '//button[text()=" Descartar "]',
-			},
-			expectedEndPoints: {
-				buscadorEndpoint: '/Api/VrimConnect/Buscador',
-				listaPalabraEndPoint: '//Wapy_Pymes/api/ListaPalabra',
 			},
 		}
 	}

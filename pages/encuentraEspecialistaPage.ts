@@ -30,7 +30,7 @@ class EncuentraEspecialistaPage {
 			audiologiaOption: string
 			cardiologiaOption: string
 			cirugiaGeneralOption: string
-			cloroproctologiaOption: string
+			coloproctologiaOption: string
 		}
 	}
 
@@ -80,7 +80,7 @@ class EncuentraEspecialistaPage {
 					'//span[text()="Audiología, otoneurología y foniatría "]',
 				cardiologiaOption: '//span[text()="Cardiología"]',
 				cirugiaGeneralOption: '//span[text()="Cirugía general"]',
-				cloroproctologiaOption: '//span[text()="Coloproctología"]',
+				coloproctologiaOption: '//span[text()="Coloproctología"]',
 			},
 		}
 	}
