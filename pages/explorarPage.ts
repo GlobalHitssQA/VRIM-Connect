@@ -172,7 +172,6 @@ class ExplorarPage {
 	navigateToCitasPage() {
 		I.waitForVisible(this.fields.header.logoVrim, 10)
 		I.click(this.fields.sidebar.citasPageButton)
-		I.wait(1000)
 	}
 
 	// eslint-disable-next-line class-methods-use-this
