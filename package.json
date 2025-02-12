@@ -31,6 +31,7 @@
 		]
 	},
 	"devDependencies": {
+		"@codeceptjs/configure": "^1.0.2",
 		"@codeceptjs/examples": "^1.2.1",
 		"@codeceptjs/ui": "^0.4.6",
 		"@faker-js/faker": "^8.0.2",
