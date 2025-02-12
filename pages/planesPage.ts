@@ -1,5 +1,3 @@
-const { I } = inject()
-
 class PlanesPage {
 	fields: {
 		header: {
@@ -52,10 +50,6 @@ class PlanesPage {
 					'//div[@class="sidebar card bg-transparent border-0 shadow-none mb-0 rounded-0"]//a[text()[normalize-space()="Sesión y cuenta"]]',
 			},
 		}
-	}
-
-	openPlanesPage() {
-		I.waitForVisible(this.fields.header.logoVrim)
 	}
 }
 

@@ -1,5 +1,3 @@
-const { I } = inject()
-
 class PerfilPage {
 	fields: {
 		header: {
@@ -415,10 +413,6 @@ class PerfilPage {
 				aceptarButton: '//button[text()="Aceptar"]',
 			},
 		}
-	}
-
-	navigateToPerfilPage() {
-		I.waitForVisible(this.fields.header.logoVrim, 10)
 	}
 }
 

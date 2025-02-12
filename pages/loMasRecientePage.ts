@@ -1,5 +1,3 @@
-const { I } = inject()
-
 class LoMasRecientePage {
 	fields: {
 		header: {

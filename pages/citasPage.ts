@@ -1,7 +1,3 @@
-import { inject } from '@codeceptjs/configure'
-
-const { I } = inject()
-
 class CitasPage {
 	fields: {
 		header: {
@@ -78,10 +74,6 @@ class CitasPage {
 				descartarButton: '//button[text()=" Descartar "]',
 			},
 		}
-	}
-
-	openCitasPages() {
-		I.waitForVisible(this.fields.header.logoVrim)
 	}
 }
 

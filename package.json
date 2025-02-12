@@ -50,7 +50,6 @@
 		"prettier": "^2.2.1"
 	},
 	"dependencies": {
-		"@codeceptjs/configure": "^1.0.2",
 		"@types/nodemailer": "^6.4.4",
 		"allure-codeceptjs": "^2.15.1",
 		"codeceptjs": "^3.5.7",

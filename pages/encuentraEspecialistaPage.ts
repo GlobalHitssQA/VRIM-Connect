@@ -1,5 +1,3 @@
-const { I } = inject()
-
 class EncuentraEspecialistaPage {
 	fields: {
 		header: {

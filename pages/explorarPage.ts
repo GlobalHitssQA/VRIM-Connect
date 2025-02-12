@@ -1,9 +1,20 @@
+import { config } from '../utils/config'
+
 const { I } = inject()
 const expectedStatusCodes: Record<string, number> = {
 	'/login': 200,
 	'/post': 200,
 	'/create': 201,
 	'/delete': 204,
+}
+const endpoints = {
+	'Buscador Vrim': '/Api/VrimConnect/Buscador',
+	'Wapy Lista Palabra': '/Wapy_Pymes/api/ListaPalabra',
+	Cupones: '/APIMovilesSI/Api/Cupones',
+	Especialidades: '/APIMovilesSI/Api/VrimConnect/Especialidades',
+	'Vrim Lista Palabra': '/APIMovilesSI/Api/VrimConnect/ListaPalabra',
+	Combos: '/APIMovilesSI/Api/Combos ',
+	Mapa: '/Api/VrimConnect/Mapa',
 }
 
 class ExplorarPage {
@@ -148,14 +159,16 @@ class ExplorarPage {
 		}
 	}
 
-	setUpApiInterception(domain, endpoint) {
+	setUpApiInterception(caseName) {
+		const endpoint = endpoints[caseName]
+		const domain = config.DOMAIN
 		this.validateNavigation(domain, endpoint)
 	}
 
-	navigateToHomeSection() {
+	navigateToLaboratorios() {
 		I.waitForVisible(this.fields.header.logoVrim, 10)
 		I.waitForVisible(this.fields.floatingChat.chatButton, 20)
-		I.click(this.fields.mainContent.homeCareButton)
+		I.click(this.fields.mainContent.laboratoriosButton)
 	}
 
 	navigateToRedDeEstablecimientosComerciales() {

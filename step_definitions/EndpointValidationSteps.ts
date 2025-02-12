@@ -7,18 +7,15 @@ Given(/^I am logged in VRIM page with user "([^"]*)"$/, (userType) => {
 	loginPage.loginStep(userType)
 })
 
-Then(/^I navigate to Home Care Section$/, () => {
-	explorarPage.navigateToHomeSection()
+Then(/^I navigate to Laboratorios Section$/, () => {
+	explorarPage.navigateToLaboratorios()
 })
 
-When(
-	/^I validate the correct domain in "([^"]*)" with "([^"]*)" and "([^"]*)"$/,
-	(caseName, domain, endpoint) => {
-		explorarPage.setUpApiInterception(domain, endpoint)
-	}
-)
+When(/^I validate the correct domain in "([^"]*)" call$/, (caseName) => {
+	explorarPage.setUpApiInterception(caseName)
+})
 
-When(/^I select a provider's card$/, () => {
+When(/^I click on a provider card$/, () => {
 	explorarPage.selectProvidersCard()
 })
 

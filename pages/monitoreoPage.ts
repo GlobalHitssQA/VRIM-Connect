@@ -1,5 +1,3 @@
-const { I } = inject()
-
 class MonitoreoPage {
 	fields: {
 		header: {
@@ -59,10 +57,6 @@ class MonitoreoPage {
 					'//div[contains(@class, "user-item") and contains(@class, "user-selected")]',
 			},
 		}
-	}
-
-	openCitasPages() {
-		I.waitForVisible(this.fields.header.logoVrim)
 	}
 }
 
