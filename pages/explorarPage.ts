@@ -71,23 +71,25 @@ class ExplorarPage {
 			},
 			sidebar: {
 				explorarPageButton:
-					'(//a[text()[normalize-space()="Explorar"]])[1]',
+					'//div[@class="sidebar card bg-transparent border-0 shadow-none mb-0 rounded-0"]//a[text()[normalize-space()="Explorar"]]',
 				planesPageButton:
-					'(//a[text()[normalize-space()="Planes"]])[1]',
-				citasPageButton: '(//a[text()[normalize-space()="Citas"]])[1]',
+					'//div[@class="sidebar card bg-transparent border-0 shadow-none mb-0 rounded-0"]//a[text()[normalize-space()="Planes"]]',
+				citasPageButton:
+					'//div[@class="sidebar card bg-transparent border-0 shadow-none mb-0 rounded-0"]//a[text()[normalize-space()="Citas"]]',
 				monitoreoPageButton:
-					'(//a[text()[normalize-space()="Monitoreo"]])[1]',
+					'//div[@class="sidebar card bg-transparent border-0 shadow-none mb-0 rounded-0"]//a[text()[normalize-space()="Monitoreo"]]',
 				perfilPageButton:
-					'(//a[text()[normalize-space()="Perfil"]])[1]',
+					'//div[@class="sidebar card bg-transparent border-0 shadow-none mb-0 rounded-0"]//a[text()[normalize-space()="Perfil"]]',
 				farmaciaPageButton:
-					'(//a[text()[normalize-space()="Farmacia"]])[1]',
-				faqPageButton: '(//a[text()[normalize-space()="FAQ"]])[1]',
+					'//div[@class="sidebar card bg-transparent border-0 shadow-none mb-0 rounded-0"]//a[text()[normalize-space()="Farmacia"]]',
+				faqPageButton:
+					'//div[@class="sidebar card bg-transparent border-0 shadow-none mb-0 rounded-0"]//a[text()[normalize-space()="FAQ"]]',
 				legalesPageButton:
-					'(//a[text()[normalize-space()="Legales"]])[1]',
+					'//div[@class="sidebar card bg-transparent border-0 shadow-none mb-0 rounded-0"]//a[text()[normalize-space()="Legales"]]',
 				contactoPageButton:
-					'(//a[text()[normalize-space()="Contacto"]])[1]',
+					'//div[@class="sidebar card bg-transparent border-0 shadow-none mb-0 rounded-0"]//a[text()[normalize-space()="Contacto"]]',
 				cerrarSesionButton:
-					'(//a[text()[normalize-space()="Sesión y cuenta"]])[1]',
+					'//div[@class="sidebar card bg-transparent border-0 shadow-none mb-0 rounded-0"]//a[text()[normalize-space()="Sesión y cuenta"]]',
 			},
 			mainContent: {
 				farmaciaButton:
@@ -165,6 +167,12 @@ class ExplorarPage {
 
 	selectProvidersCard() {
 		I.waitForVisible(this.fields.header.logoVrim, 10)
+	}
+
+	navigateToCitasPage() {
+		I.waitForVisible(this.fields.header.logoVrim, 10)
+		I.click(this.fields.sidebar.citasPageButton)
+		I.wait(1000)
 	}
 
 	// eslint-disable-next-line class-methods-use-this

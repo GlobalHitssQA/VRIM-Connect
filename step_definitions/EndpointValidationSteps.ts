@@ -32,3 +32,7 @@ Then(/^I navigate back to Explorar Page$/, () => {
 Then(/^I navigate to Red de establecimientos comerciales page$/, () => {
 	explorarPage.navigateToRedDeEstablecimientosComerciales()
 })
+
+Then(/^I navigate to Citas page$/, () => {
+	explorarPage.navigateToCitasPage()
+})
