@@ -4,7 +4,7 @@ class PerfilPage {
 	fields: {
 		header: {
 			logoVrim: string
-			avatarPorfileButton: string
+			avatarProfileButton: string
 			buscarInput: string
 		}
 		sidebar: {
@@ -184,7 +184,7 @@ class PerfilPage {
 		this.fields = {
 			header: {
 				logoVrim: '//img[@alt="logo vrim"]',
-				avatarPorfileButton:
+				avatarProfileButton:
 					'(//img[contains(@class, "1img_rounded") and contains(@src, "no-avatar.png")])[3]',
 				buscarInput: '(//input[@placeholder="Buscar"])[3]',
 			},
