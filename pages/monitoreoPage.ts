@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 class MonitoreoPage {
+=======
+import { BasePage } from './basePage'
+
+class MonitoreoPage extends BasePage {
+>>>>>>> master
 	fields: {
 		mainContent: {
 			seleccionaAlBeneficiario: string
@@ -6,6 +12,10 @@ class MonitoreoPage {
 	}
 
 	constructor() {
+<<<<<<< HEAD
+=======
+		super()
+>>>>>>> master
 		this.fields = {
 			mainContent: {
 				seleccionaAlBeneficiario:

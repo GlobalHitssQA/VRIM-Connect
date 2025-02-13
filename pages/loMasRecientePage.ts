@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 class LoMasRecientePage {
+=======
+import { BasePage } from './basePage'
+
+class LoMasRecientePage extends BasePage {
+>>>>>>> master
 	fields: {
 		mainContent: {
 			loMasVistoVideoUno: string
@@ -8,6 +14,10 @@ class LoMasRecientePage {
 	}
 
 	constructor() {
+<<<<<<< HEAD
+=======
+		super()
+>>>>>>> master
 		this.fields = {
 			mainContent: {
 				loMasVistoVideoUno:

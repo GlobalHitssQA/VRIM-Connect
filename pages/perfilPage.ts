@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 class PerfilPage {
+=======
+import { BasePage } from './basePage'
+
+class PerfilPage extends BasePage {
+>>>>>>> master
 	fields: {
 		mainContent: {
 			resultadosDeLaboratorioButton: string
@@ -162,6 +168,10 @@ class PerfilPage {
 	}
 
 	constructor() {
+<<<<<<< HEAD
+=======
+		super()
+>>>>>>> master
 		this.fields = {
 			mainContent: {
 				resultadosDeLaboratorioButton:

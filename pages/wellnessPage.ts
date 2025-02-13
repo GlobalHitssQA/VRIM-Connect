@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 class WellnessPage {
+=======
+import { BasePage } from './basePage'
+
+class WellnessPage extends BasePage {
+>>>>>>> master
 	fields: {
 		mainContent: {
 			wellnessVideoUno: string
@@ -14,6 +20,10 @@ class WellnessPage {
 	}
 
 	constructor() {
+<<<<<<< HEAD
+=======
+		super()
+>>>>>>> master
 		this.fields = {
 			mainContent: {
 				wellnessVideoUno: '(//a//span[@class="blog-title"])[1]',

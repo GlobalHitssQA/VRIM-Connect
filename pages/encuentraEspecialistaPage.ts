@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 class EncuentraEspecialistaPage {
+=======
+import { BasePage } from './basePage'
+
+class EncuentraEspecialistaPage extends BasePage {
+>>>>>>> master
 	fields: {
 		mainContent: {
 			seleccionaAlBeneficiario: string
@@ -18,6 +24,10 @@ class EncuentraEspecialistaPage {
 	}
 
 	constructor() {
+<<<<<<< HEAD
+=======
+		super()
+>>>>>>> master
 		this.fields = {
 			mainContent: {
 				seleccionaAlBeneficiario:
