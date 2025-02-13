@@ -6,9 +6,9 @@ Feature: EndpointValidation
     When I navigate to Laboratorios Section 
     Then I validate the correct domain in "<case>" call
     Examples: 
-  | userType    | case                 |
-  | vrimConnect | buscadorVrim         |
-  | vrimConnect | wapyListaPalabra     |
+  | Scenario  | userType    | case                 |
+  | VRIMTC001 | vrimConnect | buscadorVrim         |
+  | VRIMTC002 | vrimConnect | wapyListaPalabra     |
 
         
         
@@ -20,8 +20,8 @@ Feature: EndpointValidation
     And I click on a provider card
     Then I validate the correct domain in "<case>" call
 Examples:
-  | userType    | case     |
-  | vrimConnect | Cupones  |
+  | Scenario  | userType    | case     |
+  | VRIMTC003 | vrimConnect | Cupones  |
 
 
 @EndpointValidation
@@ -32,10 +32,10 @@ Examples:
     And I navigate to Red de establecimientos comerciales page
     Then I validate the correct domain in "<case>" call
 Examples:
-  | userType    | case                |
-  | vrimConnect | Especialidades      |
-  | vrimConnect | vrimListaPalabra    | 
-  | vrimConnect | Combos              |
+  | Scenario  | userType    | case                |
+  | VRIMTC004 | vrimConnect | Especialidades      |
+  | VRIMTC005 | vrimConnect | vrimListaPalabra    | 
+  | VRIMTC006 | vrimConnect | Combos              |
 
 
 @EndpointValidation
@@ -46,6 +46,6 @@ Examples:
     #And I access to the map view
     Then I validate the correct domain in "<case>" call
     Examples: 
-  | userType    | case            |
-  | vrimConnect | Mapa            |
+  | Scenario  | userType    | case            |
+  | VRIMTC007 | vrimConnect | Mapa            |
 
