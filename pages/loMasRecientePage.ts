@@ -1,6 +1,4 @@
-import { BasePage } from './basePage'
-
-class LoMasRecientePage extends BasePage {
+class LoMasRecientePage {
 	fields: {
 		mainContent: {
 			loMasVistoVideoUno: string
@@ -10,7 +8,6 @@ class LoMasRecientePage extends BasePage {
 	}
 
 	constructor() {
-		super()
 		this.fields = {
 			mainContent: {
 				loMasVistoVideoUno:

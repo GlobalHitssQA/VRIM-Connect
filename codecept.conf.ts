@@ -63,6 +63,7 @@ exports.config = {
 	include: {
 		I: './steps_file.js',
 		loginPage: './pages/loginPage',
+		Fragment: './pages/fragments/Fragment',
 	},
 	mocha: {},
 	bootstrap: null,

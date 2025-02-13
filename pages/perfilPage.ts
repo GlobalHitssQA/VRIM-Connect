@@ -1,6 +1,4 @@
-import { BasePage } from './basePage'
-
-class PerfilPage extends BasePage {
+class PerfilPage {
 	fields: {
 		mainContent: {
 			resultadosDeLaboratorioButton: string
@@ -164,7 +162,6 @@ class PerfilPage extends BasePage {
 	}
 
 	constructor() {
-		super()
 		this.fields = {
 			mainContent: {
 				resultadosDeLaboratorioButton:

@@ -1,6 +1,4 @@
-import { BasePage } from './basePage'
-
-class CitasPage extends BasePage {
+class CitasPage {
 	fields: {
 		mainContent: {
 			nombreDelUsuario: string
@@ -15,7 +13,6 @@ class CitasPage extends BasePage {
 	}
 
 	constructor() {
-		super()
 		this.fields = {
 			mainContent: {
 				nombreDelUsuario: '//h3[@class="mb-0 text-name"]',

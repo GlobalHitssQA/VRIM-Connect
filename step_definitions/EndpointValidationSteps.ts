@@ -1,8 +1,6 @@
 import explorarPage from '../pages/explorarPage'
 import loginPage from '../pages/loginPage'
 
-const { I } = inject()
-
 Given(/^I am logged in VRIM page with user "([^"]*)"$/, (userType) => {
 	loginPage.loginStep(userType)
 })

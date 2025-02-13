@@ -1,6 +1,4 @@
-import { BasePage } from './basePage'
-
-class WellnessPage extends BasePage {
+class WellnessPage {
 	fields: {
 		mainContent: {
 			wellnessVideoUno: string
@@ -16,7 +14,6 @@ class WellnessPage extends BasePage {
 	}
 
 	constructor() {
-		super()
 		this.fields = {
 			mainContent: {
 				wellnessVideoUno: '(//a//span[@class="blog-title"])[1]',
