@@ -1,12 +1,9 @@
-import { BasePage } from './basePage'
-
-class PlanesPage extends BasePage {
+class PlanesPage {
 	fields: {
 		mainContent: { verPlanButton: string }
 	}
 
 	constructor() {
-		super()
 		this.fields = {
 			mainContent: {
 				verPlanButton: '//a[text()=" Ver plan "]',

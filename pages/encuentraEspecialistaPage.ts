@@ -1,6 +1,4 @@
-import { BasePage } from './basePage'
-
-class EncuentraEspecialistaPage extends BasePage {
+class EncuentraEspecialistaPage {
 	fields: {
 		mainContent: {
 			seleccionaAlBeneficiario: string
@@ -20,7 +18,6 @@ class EncuentraEspecialistaPage extends BasePage {
 	}
 
 	constructor() {
-		super()
 		this.fields = {
 			mainContent: {
 				seleccionaAlBeneficiario:

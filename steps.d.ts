@@ -2,6 +2,7 @@
 /// <reference types='codeceptjs' />
 type steps_file = typeof import('./steps_file.js')
 type loginPage = typeof import('./pages/loginPage')
+type Navbar = typeof import('./pages/fragments/Navbar.js')
 type PlaywrightVideoAllure =
 	typeof import('./utils/playwrightVideoAllure_helper')
 type DbHelper = import('./node_modules/codeceptjs-dbhelper')
@@ -13,6 +14,7 @@ declare namespace CodeceptJS {
 		I: I
 		current: any
 		loginPage: loginPage
+		Navbar: Navbar
 	}
 	interface Methods
 		extends Playwright,

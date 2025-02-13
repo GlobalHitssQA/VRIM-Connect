@@ -1,7 +1,6 @@
 import { config } from '../utils/config'
-import { BasePage } from './basePage'
 
-const { I } = inject()
+const { I, Navbar } = inject()
 
 const { expectedStatusCodes } = config
 
@@ -15,7 +14,7 @@ const endpoints = {
 	Mapa: '/Api/VrimConnect/Mapa',
 }
 
-class ExplorarPage extends BasePage {
+class ExplorarPage {
 	fields: {
 		mainContent: {
 			farmaciaButton: string
@@ -54,7 +53,6 @@ class ExplorarPage extends BasePage {
 	}
 
 	constructor() {
-		super()
 		this.fields = {
 			mainContent: {
 				farmaciaButton:
@@ -105,36 +103,39 @@ class ExplorarPage extends BasePage {
 		}
 	}
 
-	setUpApiInterception(caseName) {
+	setUpApiInterception(caseName: keyof typeof endpoints) {
 		const endpoint = endpoints[caseName]
 		const domain = config.DOMAIN
 		this.validateNavigation(domain, endpoint)
 	}
 
 	navigateToLaboratorios() {
-		I.waitForVisible(this.baseFields.header.logoVrim, 10)
+		I.waitForVisible(Navbar.header.logoVrim, 10)
 		I.waitForVisible(this.fields.floatingChat.chatButton, 20)
 		I.click(this.fields.mainContent.laboratoriosButton)
 	}
 
 	navigateToRedDeEstablecimientosComerciales() {
-		I.waitForVisible(this.baseFields.header.logoVrim, 10)
+		I.waitForVisible(Navbar.header.logoVrim, 10)
 		I.waitForVisible(this.fields.floatingChat.chatButton, 20)
 		I.click(this.fields.mainContent.redDeEstabComercialesButton)
 	}
 
+	// eslint-disable-next-line class-methods-use-this
 	navigateToExplorarPage() {
-		I.waitForVisible(this.baseFields.header.logoVrim, 10)
-		I.click(this.baseFields.sidebar.explorarPageButton)
+		I.waitForVisible(Navbar.header.logoVrim, 10)
+		I.click(Navbar.sidebar.explorarPageButton)
 	}
 
+	// eslint-disable-next-line class-methods-use-this
 	selectProvidersCard() {
-		I.waitForVisible(this.baseFields.header.logoVrim, 10)
+		I.waitForVisible(Navbar.header.logoVrim, 10)
 	}
 
+	// eslint-disable-next-line class-methods-use-this
 	navigateToCitasPage() {
-		I.waitForVisible(this.baseFields.header.logoVrim, 10)
-		I.click(this.baseFields.sidebar.citasPageButton)
+		I.waitForVisible(Navbar.header.logoVrim, 10)
+		I.click(Navbar.sidebar.citasPageButton)
 	}
 
 	// eslint-disable-next-line class-methods-use-this
