@@ -103,7 +103,7 @@ class ExplorarPage {
 		}
 	}
 
-	setUpApiInterception(caseName) {
+	setUpApiInterception(caseName: keyof typeof endpoints) {
 		const endpoint = endpoints[caseName]
 		const domain = config.DOMAIN
 		this.validateNavigation(domain, endpoint)
