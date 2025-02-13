@@ -1,31 +1,46 @@
 const { I } = inject()
 
+const userCredentials: Record<string, { username: string; password: string }> =
+	{
+		basic: { username: '8333006407', password: 'Prueba123.' },
+		vrimConnect: { username: '5524326782', password: 'Prueba$2025' },
+	}
 class LoginPage {
 	fields: {
-		username: string
-		password: string
-		buttonText: string
-		textInLoginPage: string
+		header: {
+			logoVrim: string
+		}
+		mainContent: {
+			iniciarSesionButton: string
+			userNameInput: string
+			passwordInput: string
+			entrarButton: string
+		}
 	}
 
 	constructor() {
 		this.fields = {
-			username: '#user_login',
-			password: '#user_password',
-			buttonText: 'Sign in',
-			textInLoginPage: 'Log in to ZeroBank',
+			header: {
+				logoVrim: '//img[@alt="logo vrim"]',
+			},
+			mainContent: {
+				iniciarSesionButton: '//button[text()="Iniciar sesión"]',
+				userNameInput:
+					'//input[@placeholder="Número teléfonico/Correo electrónico"]',
+				passwordInput: '//input[@placeholder="Contraseña"]',
+				entrarButton: '//button[text()="Entrar"]',
+			},
 		}
 	}
 
-	async fillTheFields(username: string, password: string) {
-		const amNotILoggedIn = await globalThis.tryTo(() =>
-			I.see(this.fields.textInLoginPage)
-		)
-		if (amNotILoggedIn) {
-			I.fillField(this.fields.username, username)
-			I.fillField(this.fields.password, password)
-			I.click(this.fields.buttonText)
-		}
+	async loginStep(userType: string) {
+		const credentials = userCredentials[userType]
+		I.amOnPage('/')
+		I.waitForElement(this.fields.header.logoVrim, 10)
+		I.click(this.fields.mainContent.iniciarSesionButton)
+		I.fillField(this.fields.mainContent.userNameInput, credentials.username)
+		I.fillField(this.fields.mainContent.passwordInput, credentials.password)
+		I.click(this.fields.mainContent.entrarButton)
 	}
 }
 

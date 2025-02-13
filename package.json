@@ -31,7 +31,7 @@
 		]
 	},
 	"devDependencies": {
-		"@codeceptjs/configure": "^0.8.0",
+		"@codeceptjs/configure": "^1.0.2",
 		"@codeceptjs/examples": "^1.2.1",
 		"@codeceptjs/ui": "^0.4.6",
 		"@faker-js/faker": "^8.0.2",
@@ -50,13 +50,11 @@
 		"prettier": "^2.2.1"
 	},
 	"dependencies": {
-		"-": "^0.0.1",
 		"@types/nodemailer": "^6.4.4",
 		"allure-codeceptjs": "^2.15.1",
 		"codeceptjs": "^3.5.7",
 		"codeceptjs-chai": "^2.3.5",
 		"cross-env": "^7.0.3",
-		"D": "^1.0.0",
 		"dotenv": "^10.0.0",
 		"eslint-config-airbnb": "^18.2.1",
 		"nodemailer": "^6.7.2",
