@@ -1,4 +1,5 @@
 import { config } from '../utils/config'
+import { BasePage } from './basePage'
 
 const { I } = inject()
 
@@ -14,25 +15,8 @@ const endpoints = {
 	Mapa: '/Api/VrimConnect/Mapa',
 }
 
-class ExplorarPage {
+class ExplorarPage extends BasePage {
 	fields: {
-		header: {
-			logoVrim: string
-			avatarProfileButton: string
-			buscarInput: string
-		}
-		sidebar: {
-			explorarPageButton: string
-			planesPageButton: string
-			citasPageButton: string
-			monitoreoPageButton: string
-			perfilPageButton: string
-			farmaciaPageButton: string
-			faqPageButton: string
-			legalesPageButton: string
-			contactoPageButton: string
-			cerrarSesionButton: string
-		}
 		mainContent: {
 			farmaciaButton: string
 			miExpedienteDeSaludButton: string
@@ -70,35 +54,8 @@ class ExplorarPage {
 	}
 
 	constructor() {
+		super()
 		this.fields = {
-			header: {
-				logoVrim: '//img[@alt="logo vrim"]',
-				avatarProfileButton:
-					'(//img[contains(@class, "1img_rounded") and contains(@src, "no-avatar.png")])[3]',
-				buscarInput: '(//input[@placeholder="Buscar"])[3]',
-			},
-			sidebar: {
-				explorarPageButton:
-					'//div[@class="sidebar card bg-transparent border-0 shadow-none mb-0 rounded-0"]//a[text()[normalize-space()="Explorar"]]',
-				planesPageButton:
-					'//div[@class="sidebar card bg-transparent border-0 shadow-none mb-0 rounded-0"]//a[text()[normalize-space()="Planes"]]',
-				citasPageButton:
-					'//div[@class="sidebar card bg-transparent border-0 shadow-none mb-0 rounded-0"]//a[text()[normalize-space()="Citas"]]',
-				monitoreoPageButton:
-					'//div[@class="sidebar card bg-transparent border-0 shadow-none mb-0 rounded-0"]//a[text()[normalize-space()="Monitoreo"]]',
-				perfilPageButton:
-					'//div[@class="sidebar card bg-transparent border-0 shadow-none mb-0 rounded-0"]//a[text()[normalize-space()="Perfil"]]',
-				farmaciaPageButton:
-					'//div[@class="sidebar card bg-transparent border-0 shadow-none mb-0 rounded-0"]//a[text()[normalize-space()="Farmacia"]]',
-				faqPageButton:
-					'//div[@class="sidebar card bg-transparent border-0 shadow-none mb-0 rounded-0"]//a[text()[normalize-space()="FAQ"]]',
-				legalesPageButton:
-					'//div[@class="sidebar card bg-transparent border-0 shadow-none mb-0 rounded-0"]//a[text()[normalize-space()="Legales"]]',
-				contactoPageButton:
-					'//div[@class="sidebar card bg-transparent border-0 shadow-none mb-0 rounded-0"]//a[text()[normalize-space()="Contacto"]]',
-				cerrarSesionButton:
-					'//div[@class="sidebar card bg-transparent border-0 shadow-none mb-0 rounded-0"]//a[text()[normalize-space()="Sesión y cuenta"]]',
-			},
 			mainContent: {
 				farmaciaButton:
 					'//div[contains(@class, "card") and .//span[text()="Farmacia"]]',
@@ -155,29 +112,29 @@ class ExplorarPage {
 	}
 
 	navigateToLaboratorios() {
-		I.waitForVisible(this.fields.header.logoVrim, 10)
+		I.waitForVisible(this.baseFields.header.logoVrim, 10)
 		I.waitForVisible(this.fields.floatingChat.chatButton, 20)
 		I.click(this.fields.mainContent.laboratoriosButton)
 	}
 
 	navigateToRedDeEstablecimientosComerciales() {
-		I.waitForVisible(this.fields.header.logoVrim, 10)
+		I.waitForVisible(this.baseFields.header.logoVrim, 10)
 		I.waitForVisible(this.fields.floatingChat.chatButton, 20)
 		I.click(this.fields.mainContent.redDeEstabComercialesButton)
 	}
 
 	navigateToExplorarPage() {
-		I.waitForVisible(this.fields.header.logoVrim, 10)
-		I.click(this.fields.sidebar.explorarPageButton)
+		I.waitForVisible(this.baseFields.header.logoVrim, 10)
+		I.click(this.baseFields.sidebar.explorarPageButton)
 	}
 
 	selectProvidersCard() {
-		I.waitForVisible(this.fields.header.logoVrim, 10)
+		I.waitForVisible(this.baseFields.header.logoVrim, 10)
 	}
 
 	navigateToCitasPage() {
-		I.waitForVisible(this.fields.header.logoVrim, 10)
-		I.click(this.fields.sidebar.citasPageButton)
+		I.waitForVisible(this.baseFields.header.logoVrim, 10)
+		I.click(this.baseFields.sidebar.citasPageButton)
 	}
 
 	// eslint-disable-next-line class-methods-use-this

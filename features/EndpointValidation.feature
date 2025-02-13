@@ -1,6 +1,7 @@
 Feature: EndpointValidation
 
 @EndpointValidation
+@probando
   Scenario Outline: Validar endpoints en la seccion Laboratorio
     Given I am logged in VRIM page with user "<userType>"
     When I navigate to Laboratorios Section 

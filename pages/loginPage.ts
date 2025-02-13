@@ -34,6 +34,8 @@ class LoginPage {
 	}
 
 	async loginStep(userType: string) {
+		console.log(I)
+		I.wait(1000)
 		const credentials = userCredentials[userType]
 		I.amOnPage('/')
 		I.waitForElement(this.fields.header.logoVrim, 10)
