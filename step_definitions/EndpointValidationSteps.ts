@@ -1,11 +1,6 @@
 import explorarPage from '../pages/explorarPage'
 import loginPage from '../pages/loginPage'
 
-<<<<<<< HEAD
-=======
-const { I } = inject()
-
->>>>>>> master
 Given(/^I am logged in VRIM page with user "([^"]*)"$/, (userType) => {
 	loginPage.loginStep(userType)
 })

@@ -1,12 +1,6 @@
 import { config } from '../utils/config'
-<<<<<<< HEAD
 
 const { I, Fragment } = inject()
-=======
-import { BasePage } from './basePage'
-
-const { I } = inject()
->>>>>>> master
 
 const { expectedStatusCodes } = config
 
@@ -20,11 +14,7 @@ const endpoints = {
 	Mapa: '/Api/VrimConnect/Mapa',
 }
 
-<<<<<<< HEAD
 class ExplorarPage {
-=======
-class ExplorarPage extends BasePage {
->>>>>>> master
 	fields: {
 		mainContent: {
 			farmaciaButton: string
@@ -63,10 +53,6 @@ class ExplorarPage extends BasePage {
 	}
 
 	constructor() {
-<<<<<<< HEAD
-=======
-		super()
->>>>>>> master
 		this.fields = {
 			mainContent: {
 				farmaciaButton:
@@ -124,26 +110,17 @@ class ExplorarPage extends BasePage {
 	}
 
 	navigateToLaboratorios() {
-<<<<<<< HEAD
 		I.waitForVisible(Fragment.header.logoVrim, 10)
-=======
-		I.waitForVisible(this.baseFields.header.logoVrim, 10)
->>>>>>> master
 		I.waitForVisible(this.fields.floatingChat.chatButton, 20)
 		I.click(this.fields.mainContent.laboratoriosButton)
 	}
 
 	navigateToRedDeEstablecimientosComerciales() {
-<<<<<<< HEAD
 		I.waitForVisible(Fragment.header.logoVrim, 10)
-=======
-		I.waitForVisible(this.baseFields.header.logoVrim, 10)
->>>>>>> master
 		I.waitForVisible(this.fields.floatingChat.chatButton, 20)
 		I.click(this.fields.mainContent.redDeEstabComercialesButton)
 	}
 
-<<<<<<< HEAD
 	// eslint-disable-next-line class-methods-use-this
 	navigateToExplorarPage() {
 		I.waitForVisible(Fragment.header.logoVrim, 10)
@@ -159,20 +136,6 @@ class ExplorarPage extends BasePage {
 	navigateToCitasPage() {
 		I.waitForVisible(Fragment.header.logoVrim, 10)
 		I.click(Fragment.sidebar.citasPageButton)
-=======
-	navigateToExplorarPage() {
-		I.waitForVisible(this.baseFields.header.logoVrim, 10)
-		I.click(this.baseFields.sidebar.explorarPageButton)
-	}
-
-	selectProvidersCard() {
-		I.waitForVisible(this.baseFields.header.logoVrim, 10)
-	}
-
-	navigateToCitasPage() {
-		I.waitForVisible(this.baseFields.header.logoVrim, 10)
-		I.click(this.baseFields.sidebar.citasPageButton)
->>>>>>> master
 	}
 
 	// eslint-disable-next-line class-methods-use-this
