@@ -1,4 +1,4 @@
-class Fragment {
+class Navbar {
 	header: {
 		logoVrim: string
 		avatarProfileButton: string
@@ -42,4 +42,4 @@ class Fragment {
 		}
 	}
 }
-export = new Fragment()
+export = new Navbar()

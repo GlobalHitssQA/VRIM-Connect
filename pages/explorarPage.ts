@@ -1,6 +1,6 @@
 import { config } from '../utils/config'
 
-const { I, Fragment } = inject()
+const { I, Navbar } = inject()
 
 const { expectedStatusCodes } = config
 
@@ -110,32 +110,32 @@ class ExplorarPage {
 	}
 
 	navigateToLaboratorios() {
-		I.waitForVisible(Fragment.header.logoVrim, 10)
+		I.waitForVisible(Navbar.header.logoVrim, 10)
 		I.waitForVisible(this.fields.floatingChat.chatButton, 20)
 		I.click(this.fields.mainContent.laboratoriosButton)
 	}
 
 	navigateToRedDeEstablecimientosComerciales() {
-		I.waitForVisible(Fragment.header.logoVrim, 10)
+		I.waitForVisible(Navbar.header.logoVrim, 10)
 		I.waitForVisible(this.fields.floatingChat.chatButton, 20)
 		I.click(this.fields.mainContent.redDeEstabComercialesButton)
 	}
 
 	// eslint-disable-next-line class-methods-use-this
 	navigateToExplorarPage() {
-		I.waitForVisible(Fragment.header.logoVrim, 10)
-		I.click(Fragment.sidebar.explorarPageButton)
+		I.waitForVisible(Navbar.header.logoVrim, 10)
+		I.click(Navbar.sidebar.explorarPageButton)
 	}
 
 	// eslint-disable-next-line class-methods-use-this
 	selectProvidersCard() {
-		I.waitForVisible(Fragment.header.logoVrim, 10)
+		I.waitForVisible(Navbar.header.logoVrim, 10)
 	}
 
 	// eslint-disable-next-line class-methods-use-this
 	navigateToCitasPage() {
-		I.waitForVisible(Fragment.header.logoVrim, 10)
-		I.click(Fragment.sidebar.citasPageButton)
+		I.waitForVisible(Navbar.header.logoVrim, 10)
+		I.click(Navbar.sidebar.citasPageButton)
 	}
 
 	// eslint-disable-next-line class-methods-use-this
