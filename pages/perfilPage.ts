@@ -71,7 +71,7 @@ class PerfilPage extends BasePage {
 			enfermedadesPreexistentesButton: string
 			estiloDeVida: string
 			seleccionaLaCita: string
-			seleccionaUnMesInput: string
+			seleccionaUnMesButton: string
 			tipoDeSangreViewBox: string
 			donadorSiOption: string
 			donadorNoOption: string
@@ -242,7 +242,7 @@ class PerfilPage extends BasePage {
 			},
 			resultadosDeLaboratorioSection: {
 				dropDownArrowCriterioDeBusqueda:
-					'//div[@class="mat-mdc-select-arrow ng-tns-c19-38"]',
+					'//mat-select[@role="combobox"]',
 				addResultButton: '//button[@class="btn1 inputSeparacion"]',
 			},
 			expedienteMedicoSection: {
@@ -253,8 +253,9 @@ class PerfilPage extends BasePage {
 					'//div[text()=" Enfermedades preexistentes "]',
 				estiloDeVida: '//div[text()=" Estilo de vida "]',
 				seleccionaLaCita: '//span[text()="Selecciona la cita"]',
-				seleccionaUnMesInput: '//input[@id="mat-input-3"]',
-				tipoDeSangreViewBox: '//div[@id="mat-select-value-7"]',
+				seleccionaUnMesButton: '//button[@aria-label="Open calendar"]',
+				tipoDeSangreViewBox:
+					'//mat-select[@id="mat-select-6" and @role="combobox"]',
 				donadorSiOption: '//input[@value="Si"]',
 				donadorNoOption: '//input[@value="No"]',
 			},
