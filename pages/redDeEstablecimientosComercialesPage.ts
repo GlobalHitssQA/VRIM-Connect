@@ -25,7 +25,6 @@ class RedDeEstablecimientosComercialesPage {
 		}
 	}
 
-	// eslint-disable-next-line class-methods-use-this
 	async filterSearch(
 		estado = 'CIUDAD DE MEXICO',
 		municipio = 'BENITO JUAREZ',

@@ -147,8 +147,7 @@ class ExplorarPage {
 	validateNavigation(domain: string, endpoint: string) {
 		I.waitForResponse(
 			(response) =>
-				// response.url() === `${domain}${endpoint}` &&
-				response.url().includes(endpoint) &&
+				response.url().includes(`${domain}${endpoint}`) &&
 				response.status() === (expectedStatusCodes[endpoint] || 200),
 			10
 		)
