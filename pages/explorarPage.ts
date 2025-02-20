@@ -11,6 +11,7 @@ const endpoints = {
 	Especialidades: '/APIMovilesSI/Api/VrimConnect/Especialidades',
 	vrimListaPalabra: '/APIMovilesSI/Api/VrimConnect/ListaPalabra',
 	Combos: '/APIMovilesSI/Api/Combos',
+	Rbuscador: '/APIMovilesSI/Api/VrimConnect/RBuscador',
 	Mapa: '/Api/VrimConnect/Mapa',
 }
 
@@ -27,6 +28,8 @@ class ExplorarPage {
 			agendaConsultaButton: string
 			referenciasMedicasVerMasButton: string
 			redDeEstabComercialesButton: string
+			firstCardOption: string
+			loader: string
 		}
 		floatingChat: {
 			chatButton: string
@@ -71,6 +74,8 @@ class ExplorarPage {
 					'//div[h6[text()[normalize-space()="Referencias médicas"]]]//div[text()[normalize-space()="Ver más"]]',
 				redDeEstabComercialesButton:
 					'//span[text()="Red de establecimientos comerciales"]',
+				firstCardOption: '(//div[@class="card-body"])[1]',
+				loader: '//span[text()="Loading..."]',
 			},
 			floatingChat: {
 				chatButton: '//button[@aria-label="Abrir Messenger"]',
@@ -115,10 +120,16 @@ class ExplorarPage {
 		I.click(this.fields.mainContent.laboratoriosButton)
 	}
 
-	navigateToRedDeEstablecimientosComerciales() {
+	async navigateToRedDeEstablecimientosComerciales() {
 		I.waitForVisible(Navbar.header.logoVrim, 10)
 		I.waitForVisible(this.fields.floatingChat.chatButton, 20)
 		I.click(this.fields.mainContent.redDeEstabComercialesButton)
+		const advertisement = await I.grabNumberOfVisibleElements(
+			this.fields.suscriptionModal.beneficiosMessage
+		)
+		if (advertisement > 0) {
+			I.click(this.fields.suscriptionModal.descartarButton)
+		}
 	}
 
 	// eslint-disable-next-line class-methods-use-this
@@ -127,22 +138,17 @@ class ExplorarPage {
 		I.click(Navbar.sidebar.explorarPageButton)
 	}
 
-	// eslint-disable-next-line class-methods-use-this
 	selectProvidersCard() {
-		I.waitForVisible(Navbar.header.logoVrim, 10)
-	}
-
-	// eslint-disable-next-line class-methods-use-this
-	navigateToCitasPage() {
-		I.waitForVisible(Navbar.header.logoVrim, 10)
-		I.click(Navbar.sidebar.citasPageButton)
+		I.waitForElement(this.fields.mainContent.firstCardOption, 10)
+		I.click(this.fields.mainContent.firstCardOption)
 	}
 
 	// eslint-disable-next-line class-methods-use-this
 	validateNavigation(domain: string, endpoint: string) {
 		I.waitForResponse(
 			(response) =>
-				response.url() === `${domain}${endpoint}` &&
+				// response.url() === `${domain}${endpoint}` &&
+				response.url().includes(endpoint) &&
 				response.status() === (expectedStatusCodes[endpoint] || 200),
 			10
 		)

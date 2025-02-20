@@ -1,5 +1,6 @@
 import explorarPage from '../pages/explorarPage'
 import loginPage from '../pages/loginPage'
+import redDeEstablecimientosComercialesPage from '../pages/redDeEstablecimientosComercialesPage'
 
 Given(/^I am logged in VRIM page with user "([^"]*)"$/, (userType) => {
 	loginPage.loginStep(userType)
@@ -21,10 +22,10 @@ Then(/^I navigate back to Explorar Page$/, () => {
 	explorarPage.navigateToExplorarPage()
 })
 
-Then(/^I navigate to Red de establecimientos comerciales page$/, () => {
-	explorarPage.navigateToRedDeEstablecimientosComerciales()
+Then(/^I navigate to Red de establecimientos comerciales page$/, async () => {
+	await explorarPage.navigateToRedDeEstablecimientosComerciales()
 })
 
-Then(/^I navigate to Citas page$/, () => {
-	explorarPage.navigateToCitasPage()
+Then(/^I filter a search by city, state and category$/, () => {
+	redDeEstablecimientosComercialesPage.filterSearch()
 })

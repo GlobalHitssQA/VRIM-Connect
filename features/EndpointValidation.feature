@@ -36,16 +36,16 @@ Examples:
   | VRIMTC004 | vrimConnect | Especialidades      |
   | VRIMTC005 | vrimConnect | vrimListaPalabra    | 
   | VRIMTC006 | vrimConnect | Combos              |
+  | VRIMTC007 | vrimConnect | Rbuscador           |
 
 
 @EndpointValidation
   Scenario Outline: Validar el endpoint en Red Médica y TD Consentido Mapa
     Given I am logged in VRIM page with user "<userType>"
-    #PASOS COMENTADOS PORQUE AUN NO TENEMOS COMO ACCEDER
-    #When I navigate to the Red Medica y TD Consentido section
-    #And I access to the map view
+    When I navigate to Red de establecimientos comerciales page
+    And I filter a search by city, state and category
     Then I validate the correct domain in "<case>" call
     Examples: 
   | Scenario  | userType    | case            |
-  | VRIMTC007 | vrimConnect | Mapa            |
+  | VRIMTC008 | vrimConnect | Mapa            |
 
