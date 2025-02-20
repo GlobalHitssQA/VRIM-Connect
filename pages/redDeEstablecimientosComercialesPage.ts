@@ -26,11 +26,15 @@ class RedDeEstablecimientosComercialesPage {
 	}
 
 	// eslint-disable-next-line class-methods-use-this
-	filterSearch() {
+	async filterSearch(
+		estado = 'CIUDAD DE MEXICO',
+		municipio = 'BENITO JUAREZ',
+		categoria = 'GIMNASIOS'
+	) {
 		I.waitForVisible(Navbar.header.logoVrim, 10)
-		I.selectOption(this.fields.mainContent.estadoSelect, 'CIUDAD DE MEXICO')
-		I.selectOption(this.fields.mainContent.municipioSelect, 'BENITO JUAREZ')
-		I.selectOption(this.fields.mainContent.categoriaSelect, 'GIMNASIOS')
+		await I.selectOption(this.fields.mainContent.estadoSelect, estado)
+		await I.selectOption(this.fields.mainContent.municipioSelect, municipio)
+		await I.selectOption(this.fields.mainContent.categoriaSelect, categoria)
 		I.click(this.fields.mainContent.buscarBtn)
 		I.waitForElement(this.fields.mainContent.firstOptionAppCard, 10)
 		I.click(this.fields.mainContent.firstOptionAppCard)

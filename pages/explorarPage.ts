@@ -116,7 +116,7 @@ class ExplorarPage {
 
 	navigateToLaboratorios() {
 		I.waitForVisible(Navbar.header.logoVrim, 10)
-		I.waitForVisible(this.fields.floatingChat.chatButton, 20)
+		I.waitForVisible(this.fields.floatingChat.chatButton, 30)
 		I.click(this.fields.mainContent.laboratoriosButton)
 	}
 
