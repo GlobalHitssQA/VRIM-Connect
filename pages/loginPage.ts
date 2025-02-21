@@ -1,8 +1,13 @@
+import {
+	Locations,
+	GeolocationSteps,
+} from '../step_definitions/GeolocationSteps'
+
 const { I } = inject()
 
 const userCredentials: Record<string, { username: string; password: string }> =
 	{
-		basic: { username: '8333006407', password: 'Prueba123.' },
+		basic: { username: '8333006407', password: 'Prueba$2025' },
 		vrimConnect: { username: '5524326782', password: 'Prueba$2025' },
 	}
 class LoginPage {
@@ -35,15 +40,7 @@ class LoginPage {
 
 	async loginStep(userType: string) {
 		const credentials = userCredentials[userType]
-		I.usePlaywrightTo('set permissions', async ({ page }) => {
-			const context = page.context()
-			await context.grantPermissions(['geolocation'])
-			await context.setGeolocation({
-				latitude: 19.4326,
-				longitude: -99.1332,
-				accuracy: 100,
-			})
-		})
+		await GeolocationSteps.setGeolocation(Locations.CDMX)
 		I.amOnPage('/')
 		I.waitForElement(this.fields.header.logoVrim, 10)
 		I.click(this.fields.mainContent.iniciarSesionButton)

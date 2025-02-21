@@ -5,14 +5,15 @@ const { I, Navbar } = inject()
 const { expectedStatusCodes } = config
 
 const endpoints = {
-	buscadorVrim: '/Api/VrimConnect/Buscador',
-	wapyListaPalabra: '/Wapy_Pymes/api/ListaPalabra',
-	Cupones: '/APIMovilesSI/Api/Cupones',
-	Especialidades: '/APIMovilesSI/Api/VrimConnect/Especialidades',
+	buscadorVrim: '/APIMovilesSI/Api/Buscador',
+	wapyListaPalabra: '/api/BuscadorVrimPalabra',
+	cupones: '/APIMovilesSI/Api/Cupones',
+	especialidades: '/api/BuscadorEspecialidades',
 	vrimListaPalabra: '/APIMovilesSI/Api/VrimConnect/ListaPalabra',
-	Combos: '/APIMovilesSI/Api/Combos',
-	Rbuscador: '/APIMovilesSI/Api/VrimConnect/RBuscador',
-	Mapa: '/Api/VrimConnect/Mapa',
+	combos: '/APIMovilesSI/Api/Combos',
+	buscadorRed: '/api/BuscadorRed',
+	mapa: '/APIMovilesSI/Api/Mapa',
+	token: '/apitoken/api/token',
 }
 
 class ExplorarPage {

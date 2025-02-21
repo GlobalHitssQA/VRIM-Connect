@@ -21,7 +21,7 @@ Feature: EndpointValidation
     Then I validate the correct domain in "<case>" call
 Examples:
   | Scenario  | userType    | case     |
-  | VRIMTC003 | vrimConnect | Cupones  |
+  | VRIMTC003 | vrimConnect | cupones  |
 
 
 @EndpointValidation
@@ -33,11 +33,20 @@ Examples:
     Then I validate the correct domain in "<case>" call
 Examples:
   | Scenario  | userType    | case                |
-  | VRIMTC004 | vrimConnect | Especialidades      |
+  | VRIMTC004 | vrimConnect | especialidades      |
   | VRIMTC005 | vrimConnect | vrimListaPalabra    | 
-  | VRIMTC006 | vrimConnect | Combos              |
-  | VRIMTC007 | vrimConnect | Rbuscador           |
+  | VRIMTC006 | vrimConnect | combos              |
+  | VRIMTC008 | vrimConnect | token               |
 
+@EndpointValidation
+  Scenario Outline:  Validar la invocación de los endpoints al ingresar a Red de Establecimientos Comerciales y realizar una busqueda
+    Given I am logged in VRIM page with user "<userType>"
+    When I navigate to Red de establecimientos comerciales page
+    And I filter a search by city, state and category
+    Then I validate the correct domain in "<case>" call
+Examples:
+  | Scenario  | userType    | case                |
+  | VRIMTC007 | vrimConnect | buscadorRed         |
 
 @EndpointValidation
   Scenario Outline: Validar el endpoint en Red Médica y TD Consentido Mapa
@@ -46,5 +55,5 @@ Examples:
     Then I validate the correct domain in "<case>" call
     Examples: 
   | Scenario  | userType    | case            |
-  | VRIMTC008 | vrimConnect | Mapa            |
+  | VRIMTC009 | vrimConnect | mapa            |
 
