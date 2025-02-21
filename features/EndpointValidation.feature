@@ -42,8 +42,7 @@ Examples:
 @EndpointValidation
   Scenario Outline: Validar el endpoint en Red Médica y TD Consentido Mapa
     Given I am logged in VRIM page with user "<userType>"
-    When I navigate to Red de establecimientos comerciales page
-    And I filter a search by city, state and category
+    When I navigate to Red medica y TDConsentido
     Then I validate the correct domain in "<case>" call
     Examples: 
   | Scenario  | userType    | case            |

@@ -35,6 +35,15 @@ class LoginPage {
 
 	async loginStep(userType: string) {
 		const credentials = userCredentials[userType]
+		I.usePlaywrightTo('set permissions', async ({ page }) => {
+			const context = page.context()
+			await context.grantPermissions(['geolocation'])
+			await context.setGeolocation({
+				latitude: 19.4326,
+				longitude: -99.1332,
+				accuracy: 100,
+			})
+		})
 		I.amOnPage('/')
 		I.waitForElement(this.fields.header.logoVrim, 10)
 		I.click(this.fields.mainContent.iniciarSesionButton)

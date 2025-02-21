@@ -29,3 +29,7 @@ Then(/^I navigate to Red de establecimientos comerciales page$/, async () => {
 Then(/^I filter a search by city, state and category$/, async () => {
 	await redDeEstablecimientosComercialesPage.filterSearch()
 })
+
+When(/^I navigate to Red medica y TDConsentido$/, async () => {
+	await explorarPage.navigateToRedMedicayTdConsentido()
+})

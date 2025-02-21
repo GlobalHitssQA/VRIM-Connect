@@ -20,6 +20,7 @@ class ExplorarPage {
 		mainContent: {
 			farmaciaButton: string
 			miExpedienteDeSaludButton: string
+			redMedicayTdConsentidoBtn: string
 			laboratoriosButton: string
 			opticasButton: string
 			dentalButton: string
@@ -61,6 +62,8 @@ class ExplorarPage {
 				farmaciaButton:
 					'//div[contains(@class, "card") and .//span[text()="Farmacia"]]',
 				miExpedienteDeSaludButton: '//div[@routerlink="/vrim/perfil"]',
+				redMedicayTdConsentidoBtn:
+					'//span[text()="Red médica y TDConsentido"]',
 				laboratoriosButton: '//span[text()="Laboratorios"]',
 				opticasButton: '//span[text()="Ópticas"]',
 				dentalButton: '//span[text()="Dental"]',
@@ -116,20 +119,12 @@ class ExplorarPage {
 
 	navigateToLaboratorios() {
 		I.waitForVisible(Navbar.header.logoVrim, 10)
-		I.waitForVisible(this.fields.floatingChat.chatButton, 30)
 		I.click(this.fields.mainContent.laboratoriosButton)
 	}
 
 	async navigateToRedDeEstablecimientosComerciales() {
 		I.waitForVisible(Navbar.header.logoVrim, 10)
-		I.waitForVisible(this.fields.floatingChat.chatButton, 20)
 		I.click(this.fields.mainContent.redDeEstabComercialesButton)
-		const advertisement = await I.grabNumberOfVisibleElements(
-			this.fields.suscriptionModal.beneficiosMessage
-		)
-		if (advertisement > 0) {
-			I.click(this.fields.suscriptionModal.descartarButton)
-		}
 	}
 
 	// eslint-disable-next-line class-methods-use-this
@@ -141,6 +136,11 @@ class ExplorarPage {
 	selectProvidersCard() {
 		I.waitForElement(this.fields.mainContent.firstCardOption, 10)
 		I.click(this.fields.mainContent.firstCardOption)
+	}
+
+	async navigateToRedMedicayTdConsentido() {
+		I.waitForVisible(Navbar.header.logoVrim, 10)
+		I.click(this.fields.mainContent.redMedicayTdConsentidoBtn)
 	}
 
 	// eslint-disable-next-line class-methods-use-this
