@@ -1,7 +1,4 @@
-import {
-	Locations,
-	GeolocationSteps,
-} from '../step_definitions/GeolocationSteps'
+import { Locations, setGeolocation } from '../step_definitions/GeolocationSteps'
 
 const { I } = inject()
 
@@ -40,8 +37,10 @@ class LoginPage {
 
 	async loginStep(userType: string) {
 		const credentials = userCredentials[userType]
-		await GeolocationSteps.setGeolocation(Locations.CDMX)
+		await setGeolocation(Locations.CDMX)
 		I.amOnPage('/')
+		I.waitForElement(this.fields.header.logoVrim, 10)
+		I.refreshPage() // si no se hace refresh no deja entrar (ya está reportado)
 		I.waitForElement(this.fields.header.logoVrim, 10)
 		I.click(this.fields.mainContent.iniciarSesionButton)
 		I.fillField(this.fields.mainContent.userNameInput, credentials.username)

@@ -6,10 +6,9 @@ const { expectedStatusCodes } = config
 
 const endpoints = {
 	buscadorVrim: '/APIMovilesSI/Api/Buscador',
-	wapyListaPalabra: '/api/BuscadorVrimPalabra',
+	listaPalabra: '/api/BuscadorVrimPalabra',
 	cupones: '/APIMovilesSI/Api/Cupones',
 	especialidades: '/api/BuscadorEspecialidades',
-	vrimListaPalabra: '/APIMovilesSI/Api/VrimConnect/ListaPalabra',
 	combos: '/APIMovilesSI/Api/Combos',
 	buscadorRed: '/api/BuscadorRed',
 	mapa: '/APIMovilesSI/Api/Mapa',

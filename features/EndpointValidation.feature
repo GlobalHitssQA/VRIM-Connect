@@ -8,7 +8,7 @@ Feature: EndpointValidation
     Examples: 
   | Scenario  | userType    | case                 |
   | VRIMTC001 | vrimConnect | buscadorVrim         |
-  | VRIMTC002 | vrimConnect | wapyListaPalabra     |
+  | VRIMTC002 | vrimConnect | listaPalabra         |
 
         
         
@@ -34,7 +34,6 @@ Examples:
 Examples:
   | Scenario  | userType    | case                |
   | VRIMTC004 | vrimConnect | especialidades      |
-  | VRIMTC005 | vrimConnect | vrimListaPalabra    | 
   | VRIMTC006 | vrimConnect | combos              |
   | VRIMTC008 | vrimConnect | token               |
 

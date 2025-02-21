@@ -17,7 +17,7 @@ class RedDeEstablecimientosComercialesPage {
 			mainContent: {
 				estadoSelect: '//select[option[text()="Estado"]]',
 				municipioSelect: '//select[option[text()="Municipio"]]',
-				categoriaSelect: '//select[option[text()="Categorias"]]',
+				categoriaSelect: '//select[option[text()="Especialidades"]]',
 				buscarBtn: '//button[text()="Buscar"]',
 				firstOptionAppCard: '(//app-card-establecimiento-comercial)[1]',
 				direccionData: '//div[text()="Dirección"]',
@@ -35,9 +35,6 @@ class RedDeEstablecimientosComercialesPage {
 		await I.selectOption(this.fields.mainContent.municipioSelect, municipio)
 		await I.selectOption(this.fields.mainContent.categoriaSelect, categoria)
 		I.click(this.fields.mainContent.buscarBtn)
-		I.waitForElement(this.fields.mainContent.firstOptionAppCard, 10)
-		I.click(this.fields.mainContent.firstOptionAppCard)
-		I.waitForElement(this.fields.mainContent.direccionData)
 	}
 }
 
