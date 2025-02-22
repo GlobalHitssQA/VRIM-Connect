@@ -122,7 +122,7 @@ class ExplorarPage {
 		I.click(this.fields.mainContent.laboratoriosButton)
 	}
 
-	async navigateToRedDeEstablecimientosComerciales() {
+	navigateToRedDeEstablecimientosComerciales() {
 		I.waitForVisible(Navbar.header.logoVrim, 10)
 		I.click(this.fields.mainContent.redDeEstabComercialesButton)
 	}
@@ -138,7 +138,7 @@ class ExplorarPage {
 		I.click(this.fields.mainContent.firstCardOption)
 	}
 
-	async navigateToRedMedicayTdConsentido() {
+	navigateToRedMedicayTdConsentido() {
 		I.waitForVisible(Navbar.header.logoVrim, 10)
 		I.click(this.fields.mainContent.redMedicayTdConsentidoBtn)
 	}
