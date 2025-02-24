@@ -1,4 +1,4 @@
-import { Locations } from '../utils/config'
+import { LOCATIONS } from '../utils/config'
 
 const { I } = inject()
 
@@ -37,7 +37,7 @@ class LoginPage {
 
 	loginStep(userType: string) {
 		const credentials = userCredentials[userType]
-		I.setGeolocation(Locations.CDMX)
+		I.setGeolocation(LOCATIONS.CDMX)
 		I.amOnPage('/')
 		I.waitForElement(this.fields.header.logoVrim, 20)
 		I.refreshPage() // si no se hace refresh no deja entrar (ya está reportado)
