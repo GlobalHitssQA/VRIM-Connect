@@ -22,14 +22,14 @@ Then(/^I navigate back to Explorar Page$/, () => {
 	explorarPage.navigateToExplorarPage()
 })
 
-Then(/^I navigate to Red de establecimientos comerciales page$/, async () => {
-	await explorarPage.navigateToRedDeEstablecimientosComerciales()
+Then(/^I navigate to Red de establecimientos comerciales page$/, () => {
+	explorarPage.navigateToRedDeEstablecimientosComerciales()
 })
 
 Then(/^I filter a search by city, state and category$/, () => {
 	redDeEstablecimientosComercialesPage.filterSearch()
 })
 
-When(/^I navigate to Red medica y TDConsentido$/, async () => {
-	await explorarPage.navigateToRedMedicayTdConsentido()
+When(/^I navigate to Red medica y TDConsentido$/, () => {
+	explorarPage.navigateToRedMedicayTdConsentido()
 })
