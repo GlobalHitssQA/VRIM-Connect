@@ -10,8 +10,8 @@ Then(/^I navigate to Laboratorios Section$/, () => {
 	explorarPage.navigateToLaboratorios()
 })
 
-When(/^I validate the correct domain in "([^"]*)" call$/, (caseName) => {
-	explorarPage.setUpApiInterception(caseName)
+When(/^I validate the correct domain in "([^"]*)" call$/, async (caseName) => {
+	await explorarPage.setUpApiInterception(caseName)
 })
 
 When(/^I click on a provider card$/, () => {

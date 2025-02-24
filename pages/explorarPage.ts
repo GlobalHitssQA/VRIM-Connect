@@ -134,8 +134,8 @@ class ExplorarPage {
 		}
 	}
 
-	setUpApiInterception(caseName: keyof typeof endpoints) {
-		this.validateNavigation(
+	async setUpApiInterception(caseName: keyof typeof endpoints) {
+		await this.validateNavigation(
 			endpoints[caseName].domain,
 			endpoints[caseName].endpoint
 		)
@@ -168,22 +168,20 @@ class ExplorarPage {
 	}
 
 	// eslint-disable-next-line class-methods-use-this
-	validateNavigation(domain: string, endpoint: string) {
-		I.usePlaywrightTo('Verify Traffic', async ({ page }) => {
-			const requests: string[] = []
-			page.on('request', (request) => {
-				requests.push(request.url())
-			})
-			await page.reload()
-			await page.waitForTimeout(5000)
-			const wrongCallsArray = requests
-				.filter((request) => request.includes(endpoint))
-				.filter((request) => !request.includes(domain))
-			assert.ok(
-				wrongCallsArray.length === 0,
-				`La llamada al endpoint ${endpoint} no llama al dominio ${domain} en los siguientes request: ${wrongCallsArray}`
-			)
-		})
+	async validateNavigation(domain: string, endpoint: string) {
+		I.startRecordingTraffic()
+		I.wait(5)
+		const traffic = await I.grabRecordedNetworkTraffics()
+
+		const wrongCallsArray = traffic
+			.filter((request) => request.url.includes(endpoint))
+			.filter((request) => !request.url.includes(domain))
+			.map((request) => request.url)
+
+		I.assertEmpty(
+			wrongCallsArray,
+			`La llamada al endpoint ${endpoint} no llama al dominio ${domain} en los siguientes request: ${wrongCallsArray}`
+		)
 	}
 }
 
