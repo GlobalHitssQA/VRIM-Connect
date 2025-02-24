@@ -1,18 +1,41 @@
+import assert from 'assert'
 import { config } from '../utils/config'
 
 const { I, Navbar } = inject()
 
-const { expectedStatusCodes } = config
-
 const endpoints = {
-	buscadorVrim: '/APIMovilesSI/Api/Buscador',
-	listaPalabra: '/api/BuscadorVrimPalabra',
-	cupones: '/APIMovilesSI/Api/Cupones',
-	especialidades: '/api/BuscadorEspecialidades',
-	combos: '/APIMovilesSI/Api/Combos',
-	buscadorRed: '/api/BuscadorRed',
-	mapa: '/APIMovilesSI/Api/Mapa',
-	token: '/apitoken/api/token',
+	buscadorVrim: {
+		domain: config.DOMAIN,
+		endpoint: '/APIMovilesSI/Api/Buscador',
+	},
+	listaPalabra: {
+		domain: 'https://1pruapisuperapp.salud-interactiva.mx',
+		endpoint: '/api/BuscadorVrimPalabra',
+	},
+	cupones: {
+		domain: config.DOMAIN,
+		endpoint: '/APIMovilesSI/Api/Cupones',
+	},
+	especialidades: {
+		domain: 'https://1pruapisuperapp.salud-interactiva.mx',
+		endpoint: '/api/BuscadorEspecialidades',
+	},
+	combos: {
+		domain: config.DOMAIN,
+		endpoint: '/APIMovilesSI/Api/Combos',
+	},
+	buscadorRed: {
+		domain: 'https://1pruapisuperapp.salud-interactiva.mx',
+		endpoint: '/api/BuscadorRed',
+	},
+	mapa: {
+		domain: config.DOMAIN,
+		endpoint: '/APIMovilesSI/Api/Mapa',
+	},
+	token: {
+		domain: config.DOMAIN,
+		endpoint: '/apitoken/api/token',
+	},
 }
 
 class ExplorarPage {
@@ -112,9 +135,10 @@ class ExplorarPage {
 	}
 
 	setUpApiInterception(caseName: keyof typeof endpoints) {
-		const endpoint = endpoints[caseName]
-		const domain = config.DOMAIN
-		this.validateNavigation(domain, endpoint)
+		this.validateNavigation(
+			endpoints[caseName].domain,
+			endpoints[caseName].endpoint
+		)
 	}
 
 	navigateToLaboratorios() {
@@ -145,12 +169,21 @@ class ExplorarPage {
 
 	// eslint-disable-next-line class-methods-use-this
 	validateNavigation(domain: string, endpoint: string) {
-		I.waitForResponse(
-			(response) =>
-				response.url().includes(`${domain}${endpoint}`) &&
-				response.status() === (expectedStatusCodes[endpoint] || 200),
-			10
-		)
+		I.usePlaywrightTo('Verify Traffic', async ({ page }) => {
+			const requests: string[] = []
+			page.on('request', (request) => {
+				requests.push(request.url())
+			})
+			await page.reload()
+			await page.waitForTimeout(5000)
+			const wrongCallsArray = requests
+				.filter((request) => request.includes(endpoint))
+				.filter((request) => !request.includes(domain))
+			assert.ok(
+				wrongCallsArray.length === 0,
+				`La llamada al endpoint ${endpoint} no llama al dominio ${domain} en los siguientes request: ${wrongCallsArray}`
+			)
+		})
 	}
 }
 
