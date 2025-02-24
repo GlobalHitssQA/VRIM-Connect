@@ -1,10 +1,21 @@
 // in this file you can append custom step methods to 'I' object
+const { I } = inject()
+module.exports = function () {
+	return actor({
+		async setGeolocation({ latitude, longitude, accuracy }) {
+			if (!latitude || !longitude) {
+				throw new Error(
+					'Las coordenadas de geolocalización son requeridas.'
+				)
+			}
 
-module.exports = function() {
-  return actor({
+			I.usePlaywrightTo('set geolocation', async ({ page }) => {
+				const context = page.context()
+				await context.grantPermissions(['geolocation'])
+				await context.setGeolocation({ latitude, longitude, accuracy })
+			})
 
-    // Define custom steps here, use 'this' to access default methods of I.
-    // It is recommended to place a general 'login' function here.
-
-  });
+			return { latitude, longitude, accuracy }
+		},
+	})
 }

@@ -1,6 +1,12 @@
 /* eslint-disable */
 /// <reference types='codeceptjs' />
-type steps_file = typeof import('./steps_file.js')
+type steps_file = () => {
+	setGeolocation: (location: {
+		latitude: number
+		longitude: number
+		accuracy: number
+	}) => Promise<{ latitude: number; longitude: number; accuracy: number }>
+}
 type loginPage = typeof import('./pages/loginPage')
 type Navbar = typeof import('./pages/fragments/Navbar.js')
 type PlaywrightVideoAllure =
