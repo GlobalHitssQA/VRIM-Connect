@@ -1,4 +1,3 @@
-import assert from 'assert'
 import { config } from '../utils/config'
 
 const { I, Navbar } = inject()
@@ -170,14 +169,17 @@ class ExplorarPage {
 	// eslint-disable-next-line class-methods-use-this
 	async validateNavigation(domain: string, endpoint: string) {
 		I.startRecordingTraffic()
-		I.wait(5)
+		await I.waitForResponse((request) => request.url.includes(endpoint), 10)
 		const traffic = await I.grabRecordedNetworkTraffics()
-
-		const wrongCallsArray = traffic
-			.filter((request) => request.url.includes(endpoint))
-			.filter((request) => !request.url.includes(domain))
-			.map((request) => request.url)
-
+		const wrongCallsArray = traffic.reduce((acc, request) => {
+			if (
+				request.url.includes(endpoint) &&
+				!request.url.includes(domain)
+			) {
+				acc.push(request.url)
+			}
+			return acc
+		}, [])
 		I.assertEmpty(
 			wrongCallsArray,
 			`La llamada al endpoint ${endpoint} no llama al dominio ${domain} en los siguientes request: ${wrongCallsArray}`
