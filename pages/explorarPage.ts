@@ -169,7 +169,7 @@ class ExplorarPage {
 	// eslint-disable-next-line class-methods-use-this
 	async validateNavigation(domain: string, endpoint: string) {
 		I.startRecordingTraffic()
-		I.wait(5)
+		I.wait(5) // Espera necesaria para asegurar la captura completa del tráfico de red antes de analizar las solicitudes
 		const traffic = await I.grabRecordedNetworkTraffics()
 		const wrongCallsArray = traffic.reduce((acc, request) => {
 			if (
