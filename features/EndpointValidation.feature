@@ -8,7 +8,7 @@ Feature: EndpointValidation
     Examples: 
   | Scenario  | userType    | case                 |
   | VRIMTC001 | vrimConnect | buscadorVrim         |
-  | VRIMTC002 | vrimConnect | wapyListaPalabra     |
+  | VRIMTC002 | vrimConnect | listaPalabra         |
 
         
         
@@ -21,7 +21,7 @@ Feature: EndpointValidation
     Then I validate the correct domain in "<case>" call
 Examples:
   | Scenario  | userType    | case     |
-  | VRIMTC003 | vrimConnect | Cupones  |
+  | VRIMTC003 | vrimConnect | cupones  |
 
 
 @EndpointValidation
@@ -33,19 +33,26 @@ Examples:
     Then I validate the correct domain in "<case>" call
 Examples:
   | Scenario  | userType    | case                |
-  | VRIMTC004 | vrimConnect | Especialidades      |
-  | VRIMTC005 | vrimConnect | vrimListaPalabra    | 
-  | VRIMTC006 | vrimConnect | Combos              |
+  | VRIMTC004 | vrimConnect | especialidades      |
+  | VRIMTC006 | vrimConnect | combos              |
+  | VRIMTC008 | vrimConnect | token               |
 
+@EndpointValidation
+  Scenario Outline:  Validar la invocación de los endpoints al ingresar a Red de Establecimientos Comerciales y realizar una busqueda
+    Given I am logged in VRIM page with user "<userType>"
+    When I navigate to Red de establecimientos comerciales page
+    And I filter a search by city, state and category
+    Then I validate the correct domain in "<case>" call
+Examples:
+  | Scenario  | userType    | case                |
+  | VRIMTC007 | vrimConnect | buscadorRed         |
 
 @EndpointValidation
   Scenario Outline: Validar el endpoint en Red Médica y TD Consentido Mapa
     Given I am logged in VRIM page with user "<userType>"
-    #PASOS COMENTADOS PORQUE AUN NO TENEMOS COMO ACCEDER
-    #When I navigate to the Red Medica y TD Consentido section
-    #And I access to the map view
+    When I navigate to Red medica y TDConsentido
     Then I validate the correct domain in "<case>" call
     Examples: 
   | Scenario  | userType    | case            |
-  | VRIMTC007 | vrimConnect | Mapa            |
+  | VRIMTC009 | vrimConnect | mapa            |
 

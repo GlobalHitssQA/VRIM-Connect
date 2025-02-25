@@ -1,8 +1,10 @@
+import { LOCATIONS } from '../utils/config'
+
 const { I } = inject()
 
 const userCredentials: Record<string, { username: string; password: string }> =
 	{
-		basic: { username: '8333006407', password: 'Prueba123.' },
+		basic: { username: '8333006407', password: 'Prueba$2025' },
 		vrimConnect: { username: '5524326782', password: 'Prueba$2025' },
 	}
 class LoginPage {
@@ -33,9 +35,12 @@ class LoginPage {
 		}
 	}
 
-	async loginStep(userType: string) {
+	loginStep(userType: string) {
 		const credentials = userCredentials[userType]
+		I.setGeolocation(LOCATIONS.CDMX)
 		I.amOnPage('/')
+		I.waitForElement(this.fields.header.logoVrim, 20)
+		I.refreshPage() // si no se hace refresh no deja entrar (ya está reportado)
 		I.waitForElement(this.fields.header.logoVrim, 10)
 		I.click(this.fields.mainContent.iniciarSesionButton)
 		I.fillField(this.fields.mainContent.userNameInput, credentials.username)

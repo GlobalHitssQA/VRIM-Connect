@@ -2,16 +2,39 @@ import { config } from '../utils/config'
 
 const { I, Navbar } = inject()
 
-const { expectedStatusCodes } = config
-
 const endpoints = {
-	buscadorVrim: '/Api/VrimConnect/Buscador',
-	wapyListaPalabra: '/Wapy_Pymes/api/ListaPalabra',
-	Cupones: '/APIMovilesSI/Api/Cupones',
-	Especialidades: '/APIMovilesSI/Api/VrimConnect/Especialidades',
-	vrimListaPalabra: '/APIMovilesSI/Api/VrimConnect/ListaPalabra',
-	Combos: '/APIMovilesSI/Api/Combos',
-	Mapa: '/Api/VrimConnect/Mapa',
+	buscadorVrim: {
+		domain: config.DOMAIN,
+		endpoint: '/APIMovilesSI/Api/Buscador',
+	},
+	listaPalabra: {
+		domain: 'https://1pruapisuperapp.salud-interactiva.mx',
+		endpoint: '/api/BuscadorVrimPalabra',
+	},
+	cupones: {
+		domain: config.DOMAIN,
+		endpoint: '/APIMovilesSI/Api/Cupones',
+	},
+	especialidades: {
+		domain: 'https://1pruapisuperapp.salud-interactiva.mx',
+		endpoint: '/api/BuscadorEspecialidades',
+	},
+	combos: {
+		domain: config.DOMAIN,
+		endpoint: '/APIMovilesSI/Api/Combos',
+	},
+	buscadorRed: {
+		domain: 'https://1pruapisuperapp.salud-interactiva.mx',
+		endpoint: '/api/BuscadorRed',
+	},
+	mapa: {
+		domain: config.DOMAIN,
+		endpoint: '/APIMovilesSI/Api/Mapa',
+	},
+	token: {
+		domain: config.DOMAIN,
+		endpoint: '/apitoken/api/token',
+	},
 }
 
 class ExplorarPage {
@@ -19,6 +42,7 @@ class ExplorarPage {
 		mainContent: {
 			farmaciaButton: string
 			miExpedienteDeSaludButton: string
+			redMedicayTdConsentidoBtn: string
 			laboratoriosButton: string
 			opticasButton: string
 			dentalButton: string
@@ -27,6 +51,8 @@ class ExplorarPage {
 			agendaConsultaButton: string
 			referenciasMedicasVerMasButton: string
 			redDeEstabComercialesButton: string
+			firstCardOption: string
+			loader: string
 		}
 		floatingChat: {
 			chatButton: string
@@ -58,6 +84,8 @@ class ExplorarPage {
 				farmaciaButton:
 					'//div[contains(@class, "card") and .//span[text()="Farmacia"]]',
 				miExpedienteDeSaludButton: '//div[@routerlink="/vrim/perfil"]',
+				redMedicayTdConsentidoBtn:
+					'//span[text()="Red médica y TDConsentido"]',
 				laboratoriosButton: '//span[text()="Laboratorios"]',
 				opticasButton: '//span[text()="Ópticas"]',
 				dentalButton: '//span[text()="Dental"]',
@@ -71,6 +99,8 @@ class ExplorarPage {
 					'//div[h6[text()[normalize-space()="Referencias médicas"]]]//div[text()[normalize-space()="Ver más"]]',
 				redDeEstabComercialesButton:
 					'//span[text()="Red de establecimientos comerciales"]',
+				firstCardOption: '(//div[@class="card-body"])[1]',
+				loader: '//span[text()="Loading..."]',
 			},
 			floatingChat: {
 				chatButton: '//button[@aria-label="Abrir Messenger"]',
@@ -103,21 +133,20 @@ class ExplorarPage {
 		}
 	}
 
-	setUpApiInterception(caseName: keyof typeof endpoints) {
-		const endpoint = endpoints[caseName]
-		const domain = config.DOMAIN
-		this.validateNavigation(domain, endpoint)
+	async setUpApiInterception(caseName: keyof typeof endpoints) {
+		await this.validateNavigation(
+			endpoints[caseName].domain,
+			endpoints[caseName].endpoint
+		)
 	}
 
 	navigateToLaboratorios() {
 		I.waitForVisible(Navbar.header.logoVrim, 10)
-		I.waitForVisible(this.fields.floatingChat.chatButton, 20)
 		I.click(this.fields.mainContent.laboratoriosButton)
 	}
 
 	navigateToRedDeEstablecimientosComerciales() {
 		I.waitForVisible(Navbar.header.logoVrim, 10)
-		I.waitForVisible(this.fields.floatingChat.chatButton, 20)
 		I.click(this.fields.mainContent.redDeEstabComercialesButton)
 	}
 
@@ -127,24 +156,33 @@ class ExplorarPage {
 		I.click(Navbar.sidebar.explorarPageButton)
 	}
 
-	// eslint-disable-next-line class-methods-use-this
 	selectProvidersCard() {
+		I.waitForElement(this.fields.mainContent.firstCardOption, 10)
+		I.click(this.fields.mainContent.firstCardOption)
+	}
+
+	navigateToRedMedicayTdConsentido() {
 		I.waitForVisible(Navbar.header.logoVrim, 10)
+		I.click(this.fields.mainContent.redMedicayTdConsentidoBtn)
 	}
 
 	// eslint-disable-next-line class-methods-use-this
-	navigateToCitasPage() {
-		I.waitForVisible(Navbar.header.logoVrim, 10)
-		I.click(Navbar.sidebar.citasPageButton)
-	}
-
-	// eslint-disable-next-line class-methods-use-this
-	validateNavigation(domain: string, endpoint: string) {
-		I.waitForResponse(
-			(response) =>
-				response.url() === `${domain}${endpoint}` &&
-				response.status() === (expectedStatusCodes[endpoint] || 200),
-			10
+	async validateNavigation(domain: string, endpoint: string) {
+		I.startRecordingTraffic()
+		I.wait(5) // Espera necesaria para asegurar la captura completa del tráfico de red antes de analizar las solicitudes
+		const traffic = await I.grabRecordedNetworkTraffics()
+		const wrongCallsArray = traffic.reduce((acc, request) => {
+			if (
+				request.url.includes(endpoint) &&
+				!request.url.includes(domain)
+			) {
+				acc.push(request.url)
+			}
+			return acc
+		}, [])
+		I.assertEmpty(
+			wrongCallsArray,
+			`La llamada al endpoint ${endpoint} no llama al dominio ${domain} en los siguientes request: ${wrongCallsArray}`
 		)
 	}
 }

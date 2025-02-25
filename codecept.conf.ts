@@ -21,9 +21,7 @@ exports.config = {
 	output: './output',
 	helpers: {
 		Playwright: {
-			url: 'https://qa-miembros.vrim.com.mx/auth/login',
-			// Ejemplo de emular un dispositvo pero por defecto en todas las pruebas si quiere solo probarse solo en una prueba vease el test de emulacionDeDispositivos
-			// emulate: tabletDescriptor,
+			url: 'https://qap-miembros.vrim.com.mx',
 			windowSize: '1444x693',
 			device: 'Desktop',
 			show: false,

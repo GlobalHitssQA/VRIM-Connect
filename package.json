@@ -8,6 +8,7 @@
 		"test:gherkin2": "npx codeceptjs run-workers 10 --features",
 		"test:workers": "npx ts-node runWorkers.ts",
 		"generate:allure:workers": "allure generate ./output/allure-results-worker-* -o ./output/allure-report --clean",
+		"show:report:workers": "allure open ./output/allure-report",
 		"codeceptjs": "codeceptjs run --steps",
 		"codeceptjs:allure": "npx codeceptjs run --plugins allure",
 		"generate:report": "allure generate allure-results",
