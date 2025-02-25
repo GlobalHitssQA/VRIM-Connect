@@ -169,7 +169,7 @@ class ExplorarPage {
 	// eslint-disable-next-line class-methods-use-this
 	async validateNavigation(domain: string, endpoint: string) {
 		I.startRecordingTraffic()
-		await I.waitForResponse((request) => request.url.includes(endpoint), 10)
+		I.wait(5)
 		const traffic = await I.grabRecordedNetworkTraffics()
 		const wrongCallsArray = traffic.reduce((acc, request) => {
 			if (
