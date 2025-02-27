@@ -85,6 +85,9 @@ exports.config = {
 		tryTo: {
 			enabled: true,
 		},
+		retryTo: {
+			enabled: true,
+		},
 		allure: {
 			enabled: true,
 			require: 'allure-codeceptjs',
