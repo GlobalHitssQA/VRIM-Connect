@@ -135,6 +135,10 @@ class ExplorarPage {
 
 	async setUpApiInterception(caseName: keyof typeof endpoints) {
 		await this.validateNavigation(
+			endpoints.token.domain,
+			endpoints.token.endpoint
+		)
+		await this.validateNavigation(
 			endpoints[caseName].domain,
 			endpoints[caseName].endpoint
 		)
@@ -142,7 +146,7 @@ class ExplorarPage {
 
 	navigateToLaboratorios() {
 		I.waitForVisible(Navbar.header.logoVrim, 10)
-		I.waitForElement(this.fields.mainContent.laboratoriosButton, 30)
+		I.waitForElement(this.fields.mainContent.laboratoriosButton, 60)
 		I.click(this.fields.mainContent.laboratoriosButton)
 	}
 
@@ -172,7 +176,11 @@ class ExplorarPage {
 	}
 
 	// eslint-disable-next-line class-methods-use-this
-	async validateNavigation(domain: string, endpoint: string) {
+	async validateNavigation(
+		domain: string,
+		endpoint: string,
+		expectedStatusCodes?
+	) {
 		I.startRecordingTraffic()
 		I.wait(5) // Espera necesaria para asegurar la captura completa del tráfico de red antes de analizar las solicitudes
 		const traffic = await I.grabRecordedNetworkTraffics()
@@ -180,7 +188,7 @@ class ExplorarPage {
 			if (
 				request.url.includes(endpoint) &&
 				!request.url.includes(domain) &&
-				request.status === 200
+				request.status === expectedStatusCodes.OK
 			) {
 				acc.push(request.url)
 			}

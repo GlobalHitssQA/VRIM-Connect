@@ -31,13 +31,10 @@ class RedDeEstablecimientosComercialesPage {
 		categoria = 'GIMNASIOS'
 	) {
 		I.waitForVisible(Navbar.header.logoVrim, 10)
-		await retryTo(() => {
-			I.refreshPage()
-			I.selectOption(this.fields.mainContent.estadoSelect, estado)
-			I.selectOption(this.fields.mainContent.municipioSelect, municipio)
-			I.selectOption(this.fields.mainContent.categoriaSelect, categoria)
-			I.click(this.fields.mainContent.buscarBtn)
-		}, 4)
+		I.selectOption(this.fields.mainContent.estadoSelect, estado)
+		I.selectOption(this.fields.mainContent.municipioSelect, municipio)
+		I.selectOption(this.fields.mainContent.categoriaSelect, categoria)
+		I.click(this.fields.mainContent.buscarBtn)
 	}
 }
 
