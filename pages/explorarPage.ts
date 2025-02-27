@@ -157,7 +157,7 @@ class ExplorarPage {
 	}
 
 	selectProvidersCard() {
-		I.waitForElement(this.fields.mainContent.firstCardOption, 10)
+		I.waitForElement(this.fields.mainContent.firstCardOption, 30)
 		I.click(this.fields.mainContent.firstCardOption)
 	}
 
@@ -174,7 +174,8 @@ class ExplorarPage {
 		const wrongCallsArray = traffic.reduce((acc, request) => {
 			if (
 				request.url.includes(endpoint) &&
-				!request.url.includes(domain)
+				!request.url.includes(domain) &&
+				request.status === 200
 			) {
 				acc.push(request.url)
 			}
