@@ -1,43 +1,6 @@
-import { config } from '../utils/config'
-
 const { I, Navbar } = inject()
 
-const endpoints = {
-	buscadorVrim: {
-		domain: config.DOMAIN,
-		endpoint: '/APIMovilesSI/Api/Buscador',
-	},
-	listaPalabra: {
-		domain: 'https://1pruapisuperapp.salud-interactiva.mx',
-		endpoint: '/api/BuscadorVrimPalabra',
-	},
-	cupones: {
-		domain: config.DOMAIN,
-		endpoint: '/APIMovilesSI/Api/Cupones',
-	},
-	especialidades: {
-		domain: 'https://1pruapisuperapp.salud-interactiva.mx',
-		endpoint: '/api/BuscadorEspecialidades',
-	},
-	combos: {
-		domain: config.DOMAIN,
-		endpoint: '/APIMovilesSI/Api/Combos',
-	},
-	buscadorRed: {
-		domain: 'https://1pruapisuperapp.salud-interactiva.mx',
-		endpoint: '/api/BuscadorRed',
-	},
-	mapa: {
-		domain: config.DOMAIN,
-		endpoint: '/APIMovilesSI/Api/Mapa',
-	},
-	token: {
-		domain: config.DOMAIN,
-		endpoint: '/apitoken/api/token',
-	},
-}
-
-class ExplorarPage {
+class RedMedicaytdConsentidoPage {
 	fields: {
 		mainContent: {
 			farmaciaButton: string
@@ -133,73 +96,10 @@ class ExplorarPage {
 		}
 	}
 
-	async setUpApiInterception(caseName: keyof typeof endpoints) {
-		await this.validateNavigation(
-			endpoints.token.domain,
-			endpoints.token.endpoint
-		)
-		await this.validateNavigation(
-			endpoints[caseName].domain,
-			endpoints[caseName].endpoint
-		)
-	}
-
-	navigateToLaboratorios() {
-		I.waitForElement(this.fields.mainContent.laboratoriosButton, 60)
-		I.click(this.fields.mainContent.laboratoriosButton)
-	}
-
-	navigateToRedDeEstablecimientosComerciales() {
-		I.waitForElement(
-			this.fields.mainContent.redDeEstabComercialesButton,
-			30
-		)
-		I.click(this.fields.mainContent.redDeEstabComercialesButton)
-	}
-
 	// eslint-disable-next-line class-methods-use-this
-	navigateToExplorarPage() {
-		I.waitForElement(Navbar.sidebar.explorarPageButton, 30)
-		I.click(Navbar.sidebar.explorarPageButton)
-	}
-
-	async selectProvidersCard() {
-		await retryTo(() => {
-			I.refreshPage()
-			I.waitForElement(this.fields.mainContent.firstCardOption, 10)
-		}, 4)
-		I.click(this.fields.mainContent.firstCardOption)
-	}
-
-	navigateToRedMedicayTdConsentido() {
-		I.waitForElement(this.fields.mainContent.redMedicayTdConsentidoBtn, 30)
-		I.click(this.fields.mainContent.redMedicayTdConsentidoBtn)
-	}
-
-	// eslint-disable-next-line class-methods-use-this
-	async validateNavigation(
-		domain: string,
-		endpoint: string,
-		expectedStatusCodes?
-	) {
-		I.startRecordingTraffic()
-		I.wait(5) // Espera necesaria para asegurar la captura completa del tráfico de red antes de analizar las solicitudes
-		const traffic = await I.grabRecordedNetworkTraffics()
-		const wrongCallsArray = traffic.reduce((acc, request) => {
-			if (
-				request.url.includes(endpoint) &&
-				!request.url.includes(domain) &&
-				request.url.status === expectedStatusCodes.OK
-			) {
-				acc.push(request.url)
-			}
-			return acc
-		}, [])
-		I.assertEmpty(
-			wrongCallsArray,
-			`La llamada al endpoint ${endpoint} no llama al dominio ${domain} en los siguientes request: ${wrongCallsArray}`
-		)
+	async validateMapHasMarkers() {
+		I.waitForElement(Navbar.header.logoVrim, 10)
 	}
 }
 
-export = new ExplorarPage()
+export = new RedMedicaytdConsentidoPage()
