@@ -142,6 +142,7 @@ class ExplorarPage {
 
 	navigateToLaboratorios() {
 		I.waitForVisible(Navbar.header.logoVrim, 10)
+		I.waitForElement(this.fields.mainContent.laboratoriosButton, 30)
 		I.click(this.fields.mainContent.laboratoriosButton)
 	}
 
@@ -156,8 +157,12 @@ class ExplorarPage {
 		I.click(Navbar.sidebar.explorarPageButton)
 	}
 
-	selectProvidersCard() {
-		I.waitForElement(this.fields.mainContent.firstCardOption, 30)
+	async selectProvidersCard() {
+		await retryTo(() => {
+			I.refreshPage()
+			I.waitForElement(this.fields.mainContent.firstCardOption, 40)
+		}, 4)
+
 		I.click(this.fields.mainContent.firstCardOption)
 	}
 

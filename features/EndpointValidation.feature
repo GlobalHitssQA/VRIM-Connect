@@ -8,7 +8,11 @@ Feature: EndpointValidation
     Examples: 
   | Scenario  | userType    | case                 |
   | VRIMTC001 | vrimConnect | buscadorVrim         |
-  | VRIMTC002 | vrimConnect | listaPalabra         |
+  | VRIMTC002 | vrimConnect | buscadorVrim         |
+  | VRIMTC003 | vrimConnect | buscadorVrim         |
+  | VRIMTC004 | vrimConnect | listaPalabra         |
+  | VRIMTC005 | vrimConnect | listaPalabra         |
+  | VRIMTC006 | vrimConnect | listaPalabra         |
 
         
         
@@ -21,7 +25,11 @@ Feature: EndpointValidation
     Then I validate the correct domain in "<case>" call
 Examples:
   | Scenario  | userType    | case     |
-  | VRIMTC003 | vrimConnect | cupones  |
+  | VRIMTC008 | vrimConnect | cupones  |
+  | VRIMTC009 | vrimConnect | cupones  |
+  | VRIMTC010 | vrimConnect | cupones  |
+  | VRIMTC0011 | vrimConnect | cupones  |
+  | VRIMTC0012 | vrimConnect | cupones  |
 
 
 @EndpointValidation
@@ -33,9 +41,12 @@ Examples:
     Then I validate the correct domain in "<case>" call
 Examples:
   | Scenario  | userType    | case                |
-  | VRIMTC004 | vrimConnect | especialidades      |
-  | VRIMTC006 | vrimConnect | combos              |
-  | VRIMTC008 | vrimConnect | token               |
+  | VRIMTC014 | vrimConnect | especialidades      |
+  | VRIMTC015 | vrimConnect | especialidades      |
+  | VRIMTC016 | vrimConnect | especialidades      |
+  | VRIMTC017 | vrimConnect | combos              |
+  | VRIMTC018 | vrimConnect | combos              |
+  | VRIMTC019 | vrimConnect | combos              |
 
 @EndpointValidation
   Scenario Outline:  Validar la invocación de los endpoints al ingresar a Red de Establecimientos Comerciales y realizar una busqueda
@@ -45,7 +56,12 @@ Examples:
     Then I validate the correct domain in "<case>" call
 Examples:
   | Scenario  | userType    | case                |
-  | VRIMTC007 | vrimConnect | buscadorRed         |
+  | VRIMTC020 | vrimConnect | buscadorRed         |
+  | VRIMTC021 | vrimConnect | buscadorRed         |
+  | VRIMTC022 | vrimConnect | buscadorRed         |
+  | VRIMTC023 | vrimConnect | buscadorRed         |
+  | VRIMTC024 | vrimConnect | buscadorRed         |
+  | VRIMTC025 | vrimConnect | buscadorRed         |
 
 @EndpointValidation
   Scenario Outline: Validar el endpoint en Red Médica y TD Consentido Mapa
@@ -54,5 +70,10 @@ Examples:
     Then I validate the correct domain in "<case>" call
     Examples: 
   | Scenario  | userType    | case            |
-  | VRIMTC009 | vrimConnect | mapa            |
+  | VRIMTC26 | vrimConnect | mapa            |
+  | VRIMTC027 | vrimConnect | mapa            |
+  | VRIMTC028 | vrimConnect | mapa            |
+  | VRIMTC029 | vrimConnect | mapa            |
+  | VRIMTC030 | vrimConnect | mapa            |
+  | VRIMTC031 | vrimConnect | mapa            |
 

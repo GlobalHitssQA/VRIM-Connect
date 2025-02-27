@@ -25,16 +25,19 @@ class RedDeEstablecimientosComercialesPage {
 		}
 	}
 
-	filterSearch(
+	async filterSearch(
 		estado = 'CIUDAD DE MEXICO',
 		municipio = 'BENITO JUAREZ',
 		categoria = 'GIMNASIOS'
 	) {
 		I.waitForVisible(Navbar.header.logoVrim, 10)
-		I.selectOption(this.fields.mainContent.estadoSelect, estado)
-		I.selectOption(this.fields.mainContent.municipioSelect, municipio)
-		I.selectOption(this.fields.mainContent.categoriaSelect, categoria)
-		I.click(this.fields.mainContent.buscarBtn)
+		await retryTo(() => {
+			I.refreshPage()
+			I.selectOption(this.fields.mainContent.estadoSelect, estado)
+			I.selectOption(this.fields.mainContent.municipioSelect, municipio)
+			I.selectOption(this.fields.mainContent.categoriaSelect, categoria)
+			I.click(this.fields.mainContent.buscarBtn)
+		}, 4)
 	}
 }
 
