@@ -139,11 +139,6 @@ class ExplorarPage {
 		I.startRecordingTraffic()
 		I.wait(10) // Espera necesaria para asegurar la captura completa del tráfico de red antes de analizar las solicitudes
 		recordedTraffic = await I.grabRecordedNetworkTraffics()
-
-		await this.validateNavigation(
-			endpoints.token.domain,
-			endpoints.token.endpoint
-		)
 		await this.validateNavigation(
 			endpoints.token.domain,
 			endpoints.token.endpoint
