@@ -10,12 +10,15 @@ Then(/^I navigate to Laboratorios Section$/, () => {
 	explorarPage.navigateToLaboratorios()
 })
 
-When(/^I validate the correct domain in "([^"]*)" call$/, async (caseName) => {
-	await explorarPage.setUpApiInterception(caseName)
-})
+When(
+	/^I validate the correct domain in "([^"]*)" call for "([^"]*)"$/,
+	async (caseName, domainName) => {
+		await explorarPage.setUpApiInterception(caseName, domainName)
+	}
+)
 
-When(/^I click on a provider card$/, () => {
-	explorarPage.selectProvidersCard()
+When(/^I click on a provider card$/, async () => {
+	await explorarPage.selectProvidersCard()
 })
 
 Then(/^I navigate back to Explorar Page$/, () => {
