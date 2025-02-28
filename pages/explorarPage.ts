@@ -174,6 +174,7 @@ class ExplorarPage {
 	navigateToRedMedicayTdConsentido() {
 		I.waitForElement(this.fields.mainContent.redMedicayTdConsentidoBtn, 30)
 		I.click(this.fields.mainContent.redMedicayTdConsentidoBtn)
+		I.wait(5) // se espera a que cargue el mapa
 	}
 
 	// eslint-disable-next-line class-methods-use-this
