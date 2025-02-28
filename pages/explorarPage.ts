@@ -4,38 +4,40 @@ const { I, Navbar } = inject()
 
 const endpoints = {
 	buscadorVrim: {
-		domain: config.DOMAIN,
+		domain: config.domainInbursa,
 		endpoint: '/APIMovilesSI/Api/Buscador',
 	},
 	listaPalabra: {
-		domain: 'https://1pruapisuperapp.salud-interactiva.mx',
+		domain: config.domainSaludInteractiva,
 		endpoint: '/api/BuscadorVrimPalabra',
 	},
 	cupones: {
-		domain: config.DOMAIN,
+		domain: config.domainInbursa,
 		endpoint: '/APIMovilesSI/Api/Cupones',
 	},
 	especialidades: {
-		domain: 'https://1pruapisuperapp.salud-interactiva.mx',
+		domain: config.domainSaludInteractiva,
 		endpoint: '/api/BuscadorEspecialidades',
 	},
 	combos: {
-		domain: config.DOMAIN,
+		domain: config.domainInbursa,
 		endpoint: '/APIMovilesSI/Api/Combos',
 	},
 	buscadorRed: {
-		domain: 'https://1pruapisuperapp.salud-interactiva.mx',
+		domain: config.domainSaludInteractiva,
 		endpoint: '/api/BuscadorRed',
 	},
 	mapa: {
-		domain: config.DOMAIN,
+		domain: config.domainInbursa,
 		endpoint: '/APIMovilesSI/Api/Mapa',
 	},
 	token: {
-		domain: config.DOMAIN,
+		domain: config.domainInbursa,
 		endpoint: '/apitoken/api/token',
 	},
 }
+
+let recordedTraffic
 
 class ExplorarPage {
 	fields: {
@@ -133,7 +135,11 @@ class ExplorarPage {
 		}
 	}
 
-	async setUpApiInterception(caseName: keyof typeof endpoints) {
+	async setUpApiInterception(caseName: keyof typeof endpoints, domainName) {
+		I.startRecordingTraffic()
+		I.wait(10) // Espera necesaria para asegurar la captura completa del tráfico de red antes de analizar las solicitudes
+		recordedTraffic = await I.grabRecordedNetworkTraffics()
+
 		await this.validateNavigation(
 			endpoints.token.domain,
 			endpoints.token.endpoint
@@ -142,6 +148,12 @@ class ExplorarPage {
 			endpoints[caseName].domain,
 			endpoints[caseName].endpoint
 		)
+
+		if (domainName === 'inbursa')
+			await this.validateStatusAndMessage(
+				endpoints[caseName].domain,
+				endpoints[caseName].endpoint
+			)
 	}
 
 	navigateToLaboratorios() {
@@ -176,27 +188,28 @@ class ExplorarPage {
 	}
 
 	// eslint-disable-next-line class-methods-use-this
-	async validateNavigation(
-		domain: string,
-		endpoint: string,
-		expectedStatusCodes?
-	) {
-		I.startRecordingTraffic()
-		I.wait(5) // Espera necesaria para asegurar la captura completa del tráfico de red antes de analizar las solicitudes
-		const traffic = await I.grabRecordedNetworkTraffics()
-		const wrongCallsArray = traffic.reduce((acc, request) => {
-			if (
-				request.url.includes(endpoint) &&
-				!request.url.includes(domain) &&
-				request.status === expectedStatusCodes.OK
-			) {
-				acc.push(request.url)
-			}
-			return acc
-		}, [])
+	async validateNavigation(domain: string, endpoint: string) {
+		const wrongCallsArray = recordedTraffic.filter(
+			(request) =>
+				request.url.includes(endpoint) && !request.url.includes(domain)
+		)
 		I.assertEmpty(
 			wrongCallsArray,
 			`La llamada al endpoint ${endpoint} no llama al dominio ${domain} en los siguientes request: ${wrongCallsArray}`
+		)
+	}
+
+	// eslint-disable-next-line class-methods-use-this
+	async validateStatusAndMessage(domain: string, endpoint: string) {
+		const validCallsArray = recordedTraffic.filter(
+			(request) =>
+				request.url.includes(endpoint) &&
+				request.url.includes(domain) &&
+				request.response.status === config.expectedStatusCodes.OK
+		)
+		I.assertTrue(
+			validCallsArray.length !== 0,
+			`La llamada al endpoint ${domain}${endpoint} no cumple con el status = 200 y estado = true`
 		)
 	}
 }

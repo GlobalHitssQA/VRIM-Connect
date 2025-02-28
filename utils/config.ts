@@ -1,5 +1,6 @@
 export const config = {
-	DOMAIN: 'https://medicavrim-si.inbursa.com',
+	domainInbursa: 'https://medicavrim-si.inbursa.com',
+	domainSaludInteractiva: 'https://1pruapisuperapp.salud-interactiva.mx',
 	expectedStatusCodes: {
 		OK: 200,
 	},
