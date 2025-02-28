@@ -139,7 +139,6 @@ class ExplorarPage {
 		I.startRecordingTraffic()
 		I.wait(10) // Espera necesaria para asegurar la captura completa del tráfico de red antes de analizar las solicitudes
 		recordedTraffic = await I.grabRecordedNetworkTraffics()
-
 		await this.validateNavigation(
 			endpoints.token.domain,
 			endpoints.token.endpoint
@@ -157,19 +156,21 @@ class ExplorarPage {
 	}
 
 	navigateToLaboratorios() {
-		I.waitForVisible(Navbar.header.logoVrim, 10)
 		I.waitForElement(this.fields.mainContent.laboratoriosButton, 60)
 		I.click(this.fields.mainContent.laboratoriosButton)
 	}
 
 	navigateToRedDeEstablecimientosComerciales() {
-		I.waitForVisible(Navbar.header.logoVrim, 10)
+		I.waitForElement(
+			this.fields.mainContent.redDeEstabComercialesButton,
+			30
+		)
 		I.click(this.fields.mainContent.redDeEstabComercialesButton)
 	}
 
 	// eslint-disable-next-line class-methods-use-this
 	navigateToExplorarPage() {
-		I.waitForVisible(Navbar.header.logoVrim, 10)
+		I.waitForElement(Navbar.sidebar.explorarPageButton, 30)
 		I.click(Navbar.sidebar.explorarPageButton)
 	}
 
@@ -183,8 +184,9 @@ class ExplorarPage {
 	}
 
 	navigateToRedMedicayTdConsentido() {
-		I.waitForVisible(Navbar.header.logoVrim, 10)
+		I.waitForElement(this.fields.mainContent.redMedicayTdConsentidoBtn, 30)
 		I.click(this.fields.mainContent.redMedicayTdConsentidoBtn)
+		I.wait(5) // se espera a que cargue el mapa
 	}
 
 	// eslint-disable-next-line class-methods-use-this

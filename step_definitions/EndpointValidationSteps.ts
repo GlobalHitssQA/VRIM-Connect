@@ -1,6 +1,7 @@
 import explorarPage from '../pages/explorarPage'
 import loginPage from '../pages/loginPage'
 import redDeEstablecimientosComercialesPage from '../pages/redDeEstablecimientosComercialesPage'
+import redMedicaytdConsentidoPage from '../pages/redMedicaytdConsentidoPage'
 
 Given(/^I am logged in VRIM page with user "([^"]*)"$/, (userType) => {
 	loginPage.loginStep(userType)
@@ -35,4 +36,8 @@ Then(/^I filter a search by city, state and category$/, () => {
 
 When(/^I navigate to Red medica y TDConsentido$/, () => {
 	explorarPage.navigateToRedMedicayTdConsentido()
+})
+
+Then(/^I validate that the map loads correctly with location markers$/, () => {
+	redMedicaytdConsentidoPage.validateMapLoadsWithoutErrors()
 })
