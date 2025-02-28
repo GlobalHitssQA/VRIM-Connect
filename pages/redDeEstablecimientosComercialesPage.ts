@@ -25,7 +25,7 @@ class RedDeEstablecimientosComercialesPage {
 		}
 	}
 
-	async filterSearch(
+	filterSearch(
 		estado = 'CIUDAD DE MEXICO',
 		municipio = 'BENITO JUAREZ',
 		categoria = 'GIMNASIOS'

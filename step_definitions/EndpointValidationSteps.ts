@@ -29,8 +29,8 @@ Then(/^I navigate to Red de establecimientos comerciales page$/, () => {
 	explorarPage.navigateToRedDeEstablecimientosComerciales()
 })
 
-Then(/^I filter a search by city, state and category$/, async () => {
-	await redDeEstablecimientosComercialesPage.filterSearch()
+Then(/^I filter a search by city, state and category$/, () => {
+	redDeEstablecimientosComercialesPage.filterSearch()
 })
 
 When(/^I navigate to Red medica y TDConsentido$/, () => {
