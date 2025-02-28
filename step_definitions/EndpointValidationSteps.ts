@@ -39,5 +39,5 @@ When(/^I navigate to Red medica y TDConsentido$/, () => {
 })
 
 Then(/^I validate that the map loads correctly with location markers$/, () => {
-	redMedicaytdConsentidoPage.validateMapHasMarkers()
+	redMedicaytdConsentidoPage.validateMapLoadsWithoutErrors()
 })

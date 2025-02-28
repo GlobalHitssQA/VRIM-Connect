@@ -18,7 +18,7 @@ class RedMedicaytdConsentidoPage {
 		}
 	}
 
-	async validateMapHasMarkers() {
+	async validateMapLoadsWithoutErrors() {
 		I.waitForElement(this.fields.mainContent.settingsButton, 30)
 		I.dontSeeElement(this.fields.mainContent.errorMsg)
 	}
