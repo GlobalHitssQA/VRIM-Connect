@@ -7,8 +7,8 @@ Feature: EndpointValidation
     Then I validate the correct domain in "<case>" call for "<domain>"
     Examples: 
   | Scenario  | userType    | case                |  domain           | 
-  | VRIMTC0011 | vrimConnect | buscadorVrim        |  inbursa          |
-  | VRIMTC0024 | vrimConnect | listaPalabra        |  saludInteractiva |
+  | VRIMTC001 | vrimConnect | buscadorVrim        |  inbursa          |
+  | VRIMTC002 | vrimConnect | listaPalabra        |  saludInteractiva |
 
         
 @EndpointValidation
@@ -19,7 +19,7 @@ Feature: EndpointValidation
     Then I validate the correct domain in "<case>" call for "<domain>"
 Examples:
   | Scenario  | userType    | case     |  domain           | 
-  | VRIMTC0031 | vrimConnect | cupones  |  inbursa          |
+  | VRIMTC003 | vrimConnect | cupones  |  inbursa          |
 
 
 @EndpointValidation
@@ -29,7 +29,7 @@ Examples:
     Then I validate the correct domain in "<case>" call for "<domain>"
 Examples:
   | Scenario  | userType    | case                |  domain           | 
-  | VRIMTC0051 | vrimConnect | combos              |  inbursa          |
+  | VRIMTC004 | vrimConnect | combos              |  inbursa          |
 
   @EndpointValidation
   Scenario Outline:  Validar la invocación de los endpoints al ingresar a Red de Establecimientos Comerciales
@@ -39,7 +39,7 @@ Examples:
     Then I validate the correct domain in "<case>" call for "<domain>"
 Examples:
   | Scenario  | userType    | case                |  domain           | 
-  | VRIMTC0041 | vrimConnect | especialidades      |  saludInteractiva |
+  | VRIMTC005 | vrimConnect | especialidades      |  saludInteractiva |
 
 @EndpointValidation
   Scenario Outline:  Validar la invocación de los endpoints al ingresar a Red de Establecimientos Comerciales y realizar una busqueda
@@ -49,7 +49,7 @@ Examples:
     Then I validate the correct domain in "<case>" call for "<domain>"
 Examples:
   | Scenario  | userType    | case                |  domain           | 
-  | VRIMTC0061 | vrimConnect | buscadorRed         |  saludInteractiva |
+  | VRIMTC006 | vrimConnect | buscadorRed         |  saludInteractiva |
 
 @EndpointValidation
 @probando
@@ -59,5 +59,5 @@ Examples:
     Then I validate the correct domain in "<case>" call for "<domain>"
     Examples: 
   | Scenario   | userType     | case             |  domain           | 
-  | VRIMTC0071  | vrimConnect  | mapa             |  inbursa          |
+  | VRIMTC007  | vrimConnect  | mapa             |  inbursa          |
 
