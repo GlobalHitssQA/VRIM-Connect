@@ -55,6 +55,7 @@ class ExplorarPage {
 			redDeEstabComercialesButton: string
 			firstCardOption: string
 			loader: string
+			errorMsg: string
 		}
 		floatingChat: {
 			chatButton: string
@@ -103,6 +104,8 @@ class ExplorarPage {
 					'//span[text()="Red de establecimientos comerciales"]',
 				firstCardOption: '(//div[@class="card-body"])[1]',
 				loader: '//span[text()="Loading..."]',
+				errorMsg:
+					'//div[text()="No hemos encontrado resultados en la red de Servicios de Salud."]',
 			},
 			floatingChat: {
 				chatButton: '//button[@aria-label="Abrir Messenger"]',
@@ -137,6 +140,7 @@ class ExplorarPage {
 
 	async setUpApiInterception(caseName: keyof typeof endpoints, domainName) {
 		I.startRecordingTraffic()
+		I.waitForInvisible(this.fields.mainContent.loader, 60)
 		I.wait(5) // Espera necesaria para asegurar la captura completa del tráfico de red antes de analizar las solicitudes
 		recordedTraffic = await I.grabRecordedNetworkTraffics()
 		if (domainName === 'inbursa') {
@@ -176,11 +180,8 @@ class ExplorarPage {
 	}
 
 	async selectProvidersCard() {
-		await retryTo(() => {
-			I.refreshPage()
-			I.waitForElement(this.fields.mainContent.firstCardOption, 40)
-		}, 4)
-
+		I.waitForInvisible(this.fields.mainContent.loader, 60)
+		I.waitForElement(this.fields.mainContent.firstCardOption, 10)
 		I.click(this.fields.mainContent.firstCardOption)
 	}
 
@@ -196,14 +197,14 @@ class ExplorarPage {
 		)
 		I.assertTrue(
 			array.length > 0,
-			`No se encontró el siguiente endpoint: ${endpoint}`
+			`No se pudo encontrar el endpoint esperado: ${endpoint}.`
 		)
 		const conEndPoint = array.filter(
 			(request) => !request.url.includes(domain)
 		)
 		I.assertEmpty(
 			conEndPoint,
-			`No se encontró el siguiente endpoint: ${endpoint}`
+			`El endpoint encontrado: ${endpoint} no pertenece al dominio esperado: ${domain}.`
 		)
 	}
 
@@ -217,7 +218,7 @@ class ExplorarPage {
 		)
 		I.assertTrue(
 			validCallsArray.length !== 0,
-			`La llamada al endpoint ${domain}${endpoint} no cumple con el status = 200 y estado = true`
+			`La llamada al endpoint ${domain}${endpoint} no devolvió un status 200 ni un estado válido (true).`
 		)
 	}
 }

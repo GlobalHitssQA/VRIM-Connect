@@ -46,6 +46,7 @@ class LoginPage {
 		I.fillField(this.fields.mainContent.userNameInput, credentials.username)
 		I.fillField(this.fields.mainContent.passwordInput, credentials.password)
 		I.click(this.fields.mainContent.entrarButton)
+		I.wait(12) // Se usa para esperar a que se carguen todos los elementos.
 	}
 }
 
