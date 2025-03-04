@@ -55,6 +55,7 @@ class ExplorarPage {
 			redDeEstabComercialesButton: string
 			firstCardOption: string
 			loader: string
+			errorMsg: string
 		}
 		floatingChat: {
 			chatButton: string
@@ -103,6 +104,8 @@ class ExplorarPage {
 					'//span[text()="Red de establecimientos comerciales"]',
 				firstCardOption: '(//div[@class="card-body"])[1]',
 				loader: '//span[text()="Loading..."]',
+				errorMsg:
+					'//div[text()="No hemos encontrado resultados en la red de Servicios de Salud."]',
 			},
 			floatingChat: {
 				chatButton: '//button[@aria-label="Abrir Messenger"]',
@@ -137,23 +140,26 @@ class ExplorarPage {
 
 	async setUpApiInterception(caseName: keyof typeof endpoints, domainName) {
 		I.startRecordingTraffic()
-		I.wait(10) // Espera necesaria para asegurar la captura completa del tráfico de red antes de analizar las solicitudes
+		I.waitForInvisible(this.fields.mainContent.loader, 60)
+		I.wait(5) // Espera necesaria para asegurar la captura completa del tráfico de red antes de analizar las solicitudes
 		recordedTraffic = await I.grabRecordedNetworkTraffics()
-
-		await this.validateNavigation(
-			endpoints.token.domain,
-			endpoints.token.endpoint
-		)
+		if (domainName === 'inbursa') {
+			await this.validateNavigation(
+				endpoints.token.domain,
+				endpoints.token.endpoint
+			)
+		}
 		await this.validateNavigation(
 			endpoints[caseName].domain,
 			endpoints[caseName].endpoint
 		)
 
-		if (domainName === 'inbursa')
+		if (domainName === 'inbursa') {
 			await this.validateStatusAndMessage(
 				endpoints[caseName].domain,
 				endpoints[caseName].endpoint
 			)
+		}
 	}
 
 	navigateToLaboratorios() {
@@ -174,11 +180,8 @@ class ExplorarPage {
 	}
 
 	async selectProvidersCard() {
-		await retryTo(() => {
-			I.refreshPage()
-			I.waitForElement(this.fields.mainContent.firstCardOption, 40)
-		}, 4)
-
+		I.waitForInvisible(this.fields.mainContent.loader, 60)
+		I.waitForElement(this.fields.mainContent.firstCardOption, 10)
 		I.click(this.fields.mainContent.firstCardOption)
 	}
 
@@ -189,13 +192,19 @@ class ExplorarPage {
 
 	// eslint-disable-next-line class-methods-use-this
 	async validateNavigation(domain: string, endpoint: string) {
-		const wrongCallsArray = recordedTraffic.filter(
-			(request) =>
-				request.url.includes(endpoint) && !request.url.includes(domain)
+		const array = recordedTraffic.filter((request) =>
+			request.url.includes(endpoint)
+		)
+		I.assertTrue(
+			array.length > 0,
+			`No se pudo encontrar el endpoint esperado: ${endpoint}.`
+		)
+		const conEndPoint = array.filter(
+			(request) => !request.url.includes(domain)
 		)
 		I.assertEmpty(
-			wrongCallsArray,
-			`La llamada al endpoint ${endpoint} no llama al dominio ${domain} en los siguientes request: ${wrongCallsArray}`
+			conEndPoint,
+			`El endpoint encontrado: ${endpoint} no pertenece al dominio esperado: ${domain}.`
 		)
 	}
 
@@ -209,7 +218,7 @@ class ExplorarPage {
 		)
 		I.assertTrue(
 			validCallsArray.length !== 0,
-			`La llamada al endpoint ${domain}${endpoint} no cumple con el status = 200 y estado = true`
+			`La llamada al endpoint ${domain}${endpoint} no devolvió un status 200 ni un estado válido (true).`
 		)
 	}
 }

@@ -25,14 +25,21 @@ Examples:
 @EndpointValidation
   Scenario Outline:  Validar la invocación de los endpoints al ingresar a Red de Establecimientos Comerciales
     Given I am logged in VRIM page with user "<userType>"
-    When I navigate to Laboratorios Section 
-    And I navigate back to Explorar Page
-    And I navigate to Red de establecimientos comerciales page
+    When I navigate to Red de establecimientos comerciales page
     Then I validate the correct domain in "<case>" call for "<domain>"
 Examples:
   | Scenario  | userType    | case                |  domain           | 
-  | VRIMTC004 | vrimConnect | especialidades      |  saludInteractiva |
-  | VRIMTC005 | vrimConnect | combos              |  inbursa          |
+  | VRIMTC004 | vrimConnect | combos              |  inbursa          |
+
+  @EndpointValidation
+  Scenario Outline:  Validar la invocación de los endpoints al ingresar a Red de Establecimientos Comerciales
+    Given I am logged in VRIM page with user "<userType>"
+    When I navigate to Red de establecimientos comerciales page
+    And I filter a search by city and state
+    Then I validate the correct domain in "<case>" call for "<domain>"
+Examples:
+  | Scenario  | userType    | case                |  domain           | 
+  | VRIMTC005 | vrimConnect | especialidades      |  saludInteractiva |
 
 @EndpointValidation
   Scenario Outline:  Validar la invocación de los endpoints al ingresar a Red de Establecimientos Comerciales y realizar una busqueda
