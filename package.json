@@ -4,8 +4,8 @@
 	"private": true,
 	"scripts": {
 		"test": "npx codeceptjs run --tests --verbose",
-		"test:gherkin": "npx codeceptjs run --features --grep @probando --verbose --debug",
-		"test:gherkin2": "npx codeceptjs run-workers 10 --features",
+		"test:gherkin": "npx codeceptjs run --features --grep @EndpointValidation",
+		"test:gherkin2": "npx codeceptjs run-workers 20 --features",
 		"test:workers": "npx ts-node runWorkers.ts",
 		"generate:allure:workers": "allure generate ./output/allure-results-worker-* -o ./output/allure-report --clean",
 		"show:report:workers": "allure open ./output/allure-report",

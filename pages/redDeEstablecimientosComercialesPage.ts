@@ -25,6 +25,15 @@ class RedDeEstablecimientosComercialesPage {
 		}
 	}
 
+	filterSearchwWithoutCategory(
+		estado = 'CIUDAD DE MEXICO',
+		municipio = 'BENITO JUAREZ'
+	) {
+		I.waitForVisible(Navbar.header.logoVrim, 10)
+		I.selectOption(this.fields.mainContent.estadoSelect, estado)
+		I.selectOption(this.fields.mainContent.municipioSelect, municipio)
+	}
+
 	filterSearch(
 		estado = 'CIUDAD DE MEXICO',
 		municipio = 'BENITO JUAREZ',

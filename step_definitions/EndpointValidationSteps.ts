@@ -29,6 +29,10 @@ Then(/^I navigate to Red de establecimientos comerciales page$/, () => {
 	explorarPage.navigateToRedDeEstablecimientosComerciales()
 })
 
+Then(/^I filter a search by city and state$/, () => {
+	redDeEstablecimientosComercialesPage.filterSearchwWithoutCategory()
+})
+
 Then(/^I filter a search by city, state and category$/, () => {
 	redDeEstablecimientosComercialesPage.filterSearch()
 })

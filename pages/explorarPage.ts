@@ -137,23 +137,26 @@ class ExplorarPage {
 
 	async setUpApiInterception(caseName: keyof typeof endpoints, domainName) {
 		I.startRecordingTraffic()
-		I.wait(10) // Espera necesaria para asegurar la captura completa del tráfico de red antes de analizar las solicitudes
+		I.wait(5) // Espera necesaria para asegurar la captura completa del tráfico de red antes de analizar las solicitudes
 		recordedTraffic = await I.grabRecordedNetworkTraffics()
-
-		await this.validateNavigation(
-			endpoints.token.domain,
-			endpoints.token.endpoint
-		)
+		console.log(recordedTraffic)
+		if (domainName === 'inbursa') {
+			await this.validateNavigation(
+				endpoints.token.domain,
+				endpoints.token.endpoint
+			)
+		}
 		await this.validateNavigation(
 			endpoints[caseName].domain,
 			endpoints[caseName].endpoint
 		)
 
-		if (domainName === 'inbursa')
+		if (domainName === 'inbursa') {
 			await this.validateStatusAndMessage(
 				endpoints[caseName].domain,
 				endpoints[caseName].endpoint
 			)
+		}
 	}
 
 	navigateToLaboratorios() {
@@ -189,13 +192,19 @@ class ExplorarPage {
 
 	// eslint-disable-next-line class-methods-use-this
 	async validateNavigation(domain: string, endpoint: string) {
-		const wrongCallsArray = recordedTraffic.filter(
-			(request) =>
-				request.url.includes(endpoint) && !request.url.includes(domain)
+		const array = recordedTraffic.filter((request) =>
+			request.url.includes(endpoint)
+		)
+		I.assertTrue(
+			array.length > 0,
+			`No se encontró el siguiente endpoint: ${endpoint}`
+		)
+		const conEndPoint = array.filter(
+			(request) => !request.url.includes(domain)
 		)
 		I.assertEmpty(
-			wrongCallsArray,
-			`La llamada al endpoint ${endpoint} no llama al dominio ${domain} en los siguientes request: ${wrongCallsArray}`
+			conEndPoint,
+			`No se encontró el siguiente endpoint: ${endpoint}`
 		)
 	}
 
