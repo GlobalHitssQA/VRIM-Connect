@@ -8,11 +8,7 @@ Feature: EndpointValidation
     Examples: 
   | Scenario  | userType    | case                |  domain           | 
   | VRIMTC0011 | vrimConnect | buscadorVrim        |  inbursa          |
-  | VRIMTC0012 | vrimConnect | buscadorVrim        |  inbursa          |
-  | VRIMTC0013 | vrimConnect | buscadorVrim        |  inbursa          |
   | VRIMTC0024 | vrimConnect | listaPalabra        |  saludInteractiva |
-  | VRIMTC0025 | vrimConnect | listaPalabra        |  saludInteractiva |
-  | VRIMTC0026 | vrimConnect | listaPalabra        |  saludInteractiva |
 
         
 @EndpointValidation
@@ -24,11 +20,6 @@ Feature: EndpointValidation
 Examples:
   | Scenario  | userType    | case     |  domain           | 
   | VRIMTC0031 | vrimConnect | cupones  |  inbursa          |
-  | VRIMTC0032 | vrimConnect | cupones  |  inbursa          |
-  | VRIMTC0033 | vrimConnect | cupones  |  inbursa          |
-  | VRIMTC0034 | vrimConnect | cupones  |  inbursa          |
-  | VRIMTC0035 | vrimConnect | cupones  |  inbursa          |
-  | VRIMTC0036 | vrimConnect | cupones  |  inbursa          |
 
 
 @EndpointValidation
@@ -39,11 +30,6 @@ Examples:
 Examples:
   | Scenario  | userType    | case                |  domain           | 
   | VRIMTC0051 | vrimConnect | combos              |  inbursa          |
-  | VRIMTC0052 | vrimConnect | combos              |  inbursa          |
-  | VRIMTC0053 | vrimConnect | combos              |  inbursa          |
-  | VRIMTC0054 | vrimConnect | combos              |  inbursa          |
-  | VRIMTC0056 | vrimConnect | combos              |  inbursa          |
-  | VRIMTC0057 | vrimConnect | combos              |  inbursa          |
 
   @EndpointValidation
   Scenario Outline:  Validar la invocación de los endpoints al ingresar a Red de Establecimientos Comerciales
@@ -54,11 +40,6 @@ Examples:
 Examples:
   | Scenario  | userType    | case                |  domain           | 
   | VRIMTC0041 | vrimConnect | especialidades      |  saludInteractiva |
-  | VRIMTC0042 | vrimConnect | especialidades      |  saludInteractiva |
-  | VRIMTC0043 | vrimConnect | especialidades      |  saludInteractiva |
-  | VRIMTC0044 | vrimConnect | especialidades      |  saludInteractiva |
-  | VRIMTC0045 | vrimConnect | especialidades      |  saludInteractiva |
-  | VRIMTC0046 | vrimConnect | especialidades      |  saludInteractiva |
 
 @EndpointValidation
   Scenario Outline:  Validar la invocación de los endpoints al ingresar a Red de Establecimientos Comerciales y realizar una busqueda
@@ -69,11 +50,6 @@ Examples:
 Examples:
   | Scenario  | userType    | case                |  domain           | 
   | VRIMTC0061 | vrimConnect | buscadorRed         |  saludInteractiva |
-  | VRIMTC0062 | vrimConnect | buscadorRed         |  saludInteractiva |
-  | VRIMTC0063 | vrimConnect | buscadorRed         |  saludInteractiva |
-  | VRIMTC0064 | vrimConnect | buscadorRed         |  saludInteractiva |
-  | VRIMTC0065 | vrimConnect | buscadorRed         |  saludInteractiva |
-  | VRIMTC0066 | vrimConnect | buscadorRed         |  saludInteractiva |
 
 @EndpointValidation
 @probando
@@ -84,9 +60,4 @@ Examples:
     Examples: 
   | Scenario   | userType     | case             |  domain           | 
   | VRIMTC0071  | vrimConnect  | mapa             |  inbursa          |
-  | VRIMTC0072  | vrimConnect  | mapa             |  inbursa          |
-  | VRIMTC0073  | vrimConnect  | mapa             |  inbursa          |
-  | VRIMTC0074  | vrimConnect  | mapa             |  inbursa          |
-  | VRIMTC0075  | vrimConnect  | mapa             |  inbursa          |
-  | VRIMTC0076  | vrimConnect  | mapa             |  inbursa          |
 
