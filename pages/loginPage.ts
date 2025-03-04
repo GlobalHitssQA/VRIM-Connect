@@ -17,6 +17,7 @@ class LoginPage {
 			userNameInput: string
 			passwordInput: string
 			entrarButton: string
+			mostViewedSection: string
 		}
 	}
 
@@ -31,6 +32,7 @@ class LoginPage {
 					'//input[@placeholder="Número teléfonico/Correo electrónico"]',
 				passwordInput: '//input[@placeholder="Contraseña"]',
 				entrarButton: '//button[text()="Entrar"]',
+				mostViewedSection: '//img[contains(@src, "https://")]',
 			},
 		}
 	}
@@ -46,7 +48,7 @@ class LoginPage {
 		I.fillField(this.fields.mainContent.userNameInput, credentials.username)
 		I.fillField(this.fields.mainContent.passwordInput, credentials.password)
 		I.click(this.fields.mainContent.entrarButton)
-		I.wait(12) // Se usa para esperar a que se carguen todos los elementos.
+		I.waitForElement(this.fields.mainContent.mostViewedSection, 20)
 	}
 }
 
